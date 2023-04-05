@@ -2,7 +2,7 @@
 
 import { signOut } from 'next-auth/react'
 
-export default function Login() {
+export default function Logout() {
 	return (
 		<li>
 			<button
