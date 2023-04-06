@@ -7,6 +7,8 @@ import { getServerSession } from 'next-auth'
 
 import Nav from './components/Nav'
 import { authOptions } from '@/pages/api/auth/[...nextauth]'
+import { Suspense } from 'react'
+import Loading from './loading'
 
 export const metadata = {
 	title: 'Tickr',
@@ -25,9 +27,11 @@ export default async function RootLayout({
 			<body className={inter.className}>
 				{/* <CoinContextProvider> */}
 				<SessionProvider session={session}>
-					{/* @ts-expect-error Server Component */}
-					<Nav />
-					{children}
+					<Suspense fallback={<Loading />}>
+						{/* @ts-expect-error Server Component */}
+						<Nav />
+						{children}
+					</Suspense>
 				</SessionProvider>
 				{/* </CoinContextProvider> */}
 			</body>
