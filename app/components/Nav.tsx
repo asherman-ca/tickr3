@@ -1,5 +1,3 @@
-// import { CoinsData } from '../context/coinContext'
-// import { useSession } from 'next-auth/react'
 import { authOptions } from '@/pages/api/auth/[...nextauth]'
 import { getServerSession } from 'next-auth'
 
@@ -20,22 +18,21 @@ const getCoins = async (): Promise<coin[]> => {
 }
 
 async function Nav() {
-	// const { coins, loading } = CoinsData()
-	// const { data: session, status } = useSession()
-	// const data = await getCoins()
-	// const session = await getServerSession(authOptions)
 	const [data, session] = await Promise.all([
 		getCoins(),
 		getServerSession(authOptions),
 	])
-	console.log('sesh', session)
 	return (
-		<div>
-			<NavInput coins={data} />
-			{!session && <Login />}
-			{session && <Logout />}
-			{data[0].name}
-		</div>
+		<nav className='flex border-b border-black p-4'>
+			<div className='basis-full'>Tickr</div>
+			<div className='hidden sm:flex basis-full'>
+				<NavInput coins={data} />
+			</div>
+			<div className='hidden sm:flex basis-full justify-end'>
+				{!session ? <Login /> : <Logout />}
+			</div>
+			<div className='sm:hidden flex basis:full justify-end'>Dropdown</div>
+		</nav>
 	)
 }
 
