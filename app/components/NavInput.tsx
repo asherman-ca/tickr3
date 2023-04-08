@@ -1,12 +1,21 @@
 'use client'
 import { coin } from '../utils/types'
-import { useState, useMemo } from 'react'
+import { useState, useMemo, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 
 function NavInput({ coins }: { coins: coin[] }) {
 	const [search, setSearch] = useState('')
 	const [focusIn, setFocusIn] = useState(false)
+	const [focusComplete, setFocusComplete] = useState(false)
 	const router = useRouter()
+
+	useEffect(() => {
+		if (focusIn) {
+			setTimeout(() => {
+				setFocusComplete(true)
+			}, 400)
+		}
+	}, [focusIn])
 
 	const displayCoins = useMemo(() => {
 		return coins.filter((coin) => {
@@ -22,7 +31,7 @@ function NavInput({ coins }: { coins: coin[] }) {
 		>
 			<input
 				className={`h-full outline-none bg-gray-100 rounded-t-sm p-2 w-full`}
-				placeholder='search'
+				placeholder={`${focusComplete ? 'Search coin or exchange' : 'Search'}`}
 				type='text'
 				value={search}
 				onChange={(e) => setSearch(e.target.value)}
@@ -34,6 +43,7 @@ function NavInput({ coins }: { coins: coin[] }) {
 				onFocus={() => setFocusIn(true)}
 				onBlur={() => {
 					setFocusIn(false)
+					setFocusComplete(false)
 					setSearch('')
 				}}
 			/>
