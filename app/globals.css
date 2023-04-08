@@ -7,9 +7,17 @@
 		rgb(248, 250, 253) 0%,
 		rgba(248, 250, 253, 0) 413px
 	);
-	/* --color-bg: black; */
+	--color-bg-grey: {
+		rgb(239, 242, 245)
+	}
 }
 
 .color-bg {
 	background-image: var(--color-bg);
 }
+
+.color-bg-grey {
+	background: var(--color-bg-grey);
+}
+
+
