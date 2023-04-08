@@ -1,13 +1,15 @@
 'use client'
 import { coin } from '../utils/types'
-import { useState, useMemo, useEffect } from 'react'
+import { useState, useMemo, useEffect, useRef } from 'react'
 import { useRouter } from 'next/navigation'
+import Link from 'next/link'
 
 function NavInput({ coins }: { coins: coin[] }) {
 	const [search, setSearch] = useState('')
 	const [focusIn, setFocusIn] = useState(false)
 	const [focusComplete, setFocusComplete] = useState(false)
 	const router = useRouter()
+	const inputRef = useRef<HTMLInputElement | null>(null)
 
 	useEffect(() => {
 		if (focusIn) {
@@ -23,6 +25,18 @@ function NavInput({ coins }: { coins: coin[] }) {
 			return coin.name.toLowerCase().includes(search.toLowerCase())
 		})
 	}, [search])
+
+	const handleInputBlur = (event: React.FocusEvent<HTMLInputElement>) => {
+		if (
+			event.relatedTarget instanceof HTMLElement &&
+			event.relatedTarget.parentElement?.id === 'search-results' // Check if mouse is over sibling element
+		) {
+			router.push(`${event.relatedTarget.href}`)
+		}
+		setFocusIn(false)
+		setFocusComplete(false)
+		setSearch('')
+	}
 
 	return (
 		<div
@@ -44,19 +58,30 @@ function NavInput({ coins }: { coins: coin[] }) {
 					}
 				}}
 				onFocus={() => setFocusIn(true)}
-				onBlur={() => {
-					setFocusIn(false)
-					setFocusComplete(false)
-					setSearch('')
-				}}
+				// onBlur={() => {
+				// 	setFocusIn(false)
+				// 	setFocusComplete(false)
+				// 	setSearch('')
+				// }}
+				onBlur={handleInputBlur}
+				ref={inputRef}
 			/>
 			{focusComplete && (
 				<div
-					className={`absolute border-2 border-gray-200 w-100% p-2 w-full transition-all ease-in-out duration-500 border-t-0 bg-white rounded-b-md`}
+					id='search-results'
+					className={`absolute flex flex-col justify-start border-2 border-gray-200 w-100% p-2 w-full transition-all ease-in-out duration-500 border-t-0 bg-white rounded-b-md`}
 				>
 					{displayCoins.length === 0 && <div>Trending</div>}
 					{displayCoins.map((coin) => {
-						return <div>{coin.name}</div>
+						return (
+							<Link
+								key={coin.id}
+								href={`/coin/${coin.name}`}
+								className='text-left'
+							>
+								{coin.name}
+							</Link>
+						)
 					})}
 				</div>
 			)}

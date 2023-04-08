@@ -23,17 +23,26 @@ async function Nav() {
 		getServerSession(authOptions),
 	])
 	return (
-		<nav className='flex bg-white py-4 px-8 box-shadow-grey'>
-			<div className='basis-4/6 flex items-center justify-start gap-8'>
-				<span className='text-2xl font-medium'>Tickr</span>
-				<button className='font-medium'>Cyptocurrencies</button>
-				<button className='font-medium'>Exchanges</button>
-				{!session ? <Login /> : <Logout />}
+		<nav className='flex bg-white pt-2 pb-4 box-shadow-grey flex-col'>
+			<div className='flex justify-between pb-2 border-b-2 border-gray-100 px-8'>
+				<div className='flex gap-4'>
+					<span>Cryptos: 23,253</span>
+					<span>Exchange: 603</span>
+				</div>
+				<div>{!session ? <Login /> : <Logout />}</div>
 			</div>
-			<div className='hidden sm:flex basis-2/6 justify-end'>
-				<NavInput coins={data} />
+			<div className='flex pt-4 px-8'>
+				<div className='basis-4/6 flex items-center justify-start gap-8'>
+					<span className='text-2xl font-medium'>Tickr</span>
+					<button className='font-medium'>Cyptocurrencies</button>
+					<button className='font-medium'>Exchanges</button>
+					<button className='font-medium'>Leaderboard</button>
+				</div>
+				<div className='hidden sm:flex basis-2/6 justify-end'>
+					<NavInput coins={data} />
+				</div>
+				<div className='sm:hidden flex basis:full justify-end'>Dropdown</div>
 			</div>
-			<div className='sm:hidden flex basis:full justify-end'>Dropdown</div>
 		</nav>
 	)
 }
