@@ -13,11 +13,12 @@ function NavInput({ coins }: { coins: coin[] }) {
 		if (focusIn) {
 			setTimeout(() => {
 				setFocusComplete(true)
-			}, 400)
+			}, 350)
 		}
 	}, [focusIn])
 
 	const displayCoins = useMemo(() => {
+		if (search === '') return []
 		return coins.filter((coin) => {
 			return coin.name.toLowerCase().includes(search.toLowerCase())
 		})
@@ -30,7 +31,9 @@ function NavInput({ coins }: { coins: coin[] }) {
 			} transition-all ease-in-out duration-500`}
 		>
 			<input
-				className={`h-full outline-none bg-gray-100 rounded-t-sm p-2 w-full`}
+				className={`h-full outline-none border-2 border-gray-200 p-2 w-full rounded-md ${
+					focusIn && 'border-b-0 rounded-b-none'
+				}`}
 				placeholder={`${focusComplete ? 'Search coin or exchange' : 'Search'}`}
 				type='text'
 				value={search}
@@ -47,8 +50,11 @@ function NavInput({ coins }: { coins: coin[] }) {
 					setSearch('')
 				}}
 			/>
-			{search && (
-				<div className='absolute bg-gray-100 w-100% px-2 w-full'>
+			{focusIn && (
+				<div
+					className={`absolute border-2 border-gray-200 w-100% p-2 w-full transition-all ease-in-out duration-500 border-t-0 bg-white rounded-b-md`}
+				>
+					{displayCoins.length === 0 && <div>Trending</div>}
 					{displayCoins.map((coin) => {
 						return <div>{coin.name}</div>
 					})}
