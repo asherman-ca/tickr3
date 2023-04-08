@@ -23,13 +23,13 @@ async function Nav() {
 		getServerSession(authOptions),
 	])
 	return (
-		<nav className='flex border-b border-black p-4'>
+		<nav className='flex bg-white py-2 px-4'>
 			<div className='basis-full'>Tickr</div>
 			<div className='hidden sm:flex basis-full'>
-				<NavInput coins={data} />
+				{!session ? <Login /> : <Logout />}
 			</div>
 			<div className='hidden sm:flex basis-full justify-end'>
-				{!session ? <Login /> : <Logout />}
+				<NavInput coins={data} />
 			</div>
 			<div className='sm:hidden flex basis:full justify-end'>Dropdown</div>
 		</nav>

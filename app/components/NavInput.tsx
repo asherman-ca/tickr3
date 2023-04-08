@@ -14,9 +14,9 @@ function NavInput({ coins }: { coins: coin[] }) {
 	}, [search])
 
 	return (
-		<div className='relative mx-auto'>
+		<div className='relative'>
 			<input
-				className='h-full p-2'
+				className='h-full p-2 outline-none border border-gray-300 rounded-md'
 				type='text'
 				value={search}
 				onChange={(e) => setSearch(e.target.value)}
@@ -27,7 +27,7 @@ function NavInput({ coins }: { coins: coin[] }) {
 				}}
 			/>
 			{search && (
-				<div className='absolute top-100% mt-8'>
+				<div className='absolute top-100% mt-2'>
 					{displayCoins.map((coin) => {
 						return <div>{coin.name}</div>
 					})}
