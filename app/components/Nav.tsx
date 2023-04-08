@@ -23,14 +23,14 @@ async function Nav() {
 		getServerSession(authOptions),
 	])
 	return (
-		<nav className='flex bg-white py-4 px-4 box-shadow-grey'>
-			<div className='basis-full flex items-center justify-start'>
+		<nav className='flex bg-white py-4 px-8 box-shadow-grey'>
+			<div className='basis-4/6 flex items-center justify-start gap-8'>
 				<span className='text-2xl font-medium'>Tickr</span>
-			</div>
-			<div className='hidden sm:flex basis-full'>
+				<button className='font-medium'>Cyptocurrencies</button>
+				<button className='font-medium'>Exchanges</button>
 				{!session ? <Login /> : <Logout />}
 			</div>
-			<div className='hidden sm:flex basis-full justify-end'>
+			<div className='hidden sm:flex basis-2/6 justify-end'>
 				<NavInput coins={data} />
 			</div>
 			<div className='sm:hidden flex basis:full justify-end'>Dropdown</div>

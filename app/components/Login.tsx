@@ -4,7 +4,7 @@ import { signIn } from 'next-auth/react'
 
 export default function Login() {
 	return (
-		<button className='' onClick={() => signIn('google')}>
+		<button className='font-medium' onClick={() => signIn('google')}>
 			Sign In
 		</button>
 	)

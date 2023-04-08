@@ -24,7 +24,7 @@ export default async function RootLayout({
 
 	return (
 		<html lang='en'>
-			<body className={`${inter.className} min-h-screen color-bg`}>
+			<body className={`${inter.className} min-h-screen color-bg text-sm`}>
 				{/* <CoinContextProvider> */}
 				<SessionProvider session={session}>
 					<Suspense fallback={<Loading />}>
