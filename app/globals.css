@@ -26,4 +26,7 @@
 	background: var(--color-bg-grey);
 }
 
+.box-sizing {
+	box-sizing: content-box;
+}
 

@@ -46,8 +46,8 @@ function NavInput({ coins }: { coins: coin[] }) {
 			} transition-all ease-in-out duration-500`}
 		>
 			<input
-				className={`h-full outline-none border-2 border-gray-200 p-2 w-full rounded-md ${
-					focusComplete && 'border-b-0 rounded-b-none mb-[2px]'
+				className={`box-sizing h-full outline-none border-2 border-gray-200 p-2 w-full rounded-md ${
+					focusComplete && 'rounded-b-none'
 				}`}
 				placeholder={`${focusComplete ? 'Search coin or exchange' : 'Search'}`}
 				type='text'
@@ -65,7 +65,7 @@ function NavInput({ coins }: { coins: coin[] }) {
 			{focusComplete && (
 				<div
 					id='search-results'
-					className={`absolute flex flex-col justify-start border-2 border-gray-200 w-100% w-full transition-all ease-in-out duration-500 border-t-0 bg-white rounded-b-md max-h-80 overflow-auto`}
+					className={`-mt-[2px] absolute flex flex-col justify-start border-2 border-gray-200 w-100% w-full transition-all ease-in-out duration-500 border-t-0 bg-white rounded-b-md max-h-80 overflow-auto`}
 				>
 					{displayCoins.length === 0 && (
 						<div className='text-left py-1 px-2'>Trending</div>
