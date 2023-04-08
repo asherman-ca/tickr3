@@ -13,7 +13,7 @@ function NavInput({ coins }: { coins: coin[] }) {
 		if (focusIn) {
 			setTimeout(() => {
 				setFocusComplete(true)
-			}, 350)
+			}, 400)
 		}
 	}, [focusIn])
 
@@ -32,7 +32,7 @@ function NavInput({ coins }: { coins: coin[] }) {
 		>
 			<input
 				className={`h-full outline-none border-2 border-gray-200 p-2 w-full rounded-md ${
-					focusIn && 'border-b-0 rounded-b-none'
+					focusComplete && 'border-b-0 rounded-b-none'
 				}`}
 				placeholder={`${focusComplete ? 'Search coin or exchange' : 'Search'}`}
 				type='text'
@@ -50,7 +50,7 @@ function NavInput({ coins }: { coins: coin[] }) {
 					setSearch('')
 				}}
 			/>
-			{focusIn && (
+			{focusComplete && (
 				<div
 					className={`absolute border-2 border-gray-200 w-100% p-2 w-full transition-all ease-in-out duration-500 border-t-0 bg-white rounded-b-md`}
 				>

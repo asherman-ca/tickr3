@@ -23,8 +23,10 @@ async function Nav() {
 		getServerSession(authOptions),
 	])
 	return (
-		<nav className='flex bg-white py-2 px-4'>
-			<div className='basis-full'>Tickr</div>
+		<nav className='flex bg-white py-4 px-4 box-shadow-grey'>
+			<div className='basis-full flex items-center justify-start'>
+				<span className='text-2xl font-medium'>Tickr</span>
+			</div>
 			<div className='hidden sm:flex basis-full'>
 				{!session ? <Login /> : <Logout />}
 			</div>
