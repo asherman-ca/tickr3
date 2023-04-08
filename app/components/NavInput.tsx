@@ -29,9 +29,10 @@ function NavInput({ coins }: { coins: coin[] }) {
 	const handleInputBlur = (event: React.FocusEvent<HTMLInputElement>) => {
 		if (
 			event.relatedTarget instanceof HTMLElement &&
-			event.relatedTarget.parentElement?.id === 'search-results' // Check if mouse is over sibling element
+			event.relatedTarget.parentElement?.id === 'search-results' && // Check if mouse is over search results
+			(event.relatedTarget as HTMLAnchorElement).href // Check if mouse is over a link
 		) {
-			router.push(`${event.relatedTarget.href}`)
+			router.push(`${(event.relatedTarget as HTMLAnchorElement).href}`)
 		}
 		setFocusIn(false)
 		setFocusComplete(false)
@@ -58,11 +59,6 @@ function NavInput({ coins }: { coins: coin[] }) {
 					}
 				}}
 				onFocus={() => setFocusIn(true)}
-				// onBlur={() => {
-				// 	setFocusIn(false)
-				// 	setFocusComplete(false)
-				// 	setSearch('')
-				// }}
 				onBlur={handleInputBlur}
 				ref={inputRef}
 			/>
