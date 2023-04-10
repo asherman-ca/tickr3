@@ -36,6 +36,16 @@ export type coinView = {
 	id: string
 }
 
+export type sessionType = {
+	user: {
+		id: string
+		name: string
+		email: string
+		image: string
+	}
+	expires: string
+}
+
 // export type coin = {
 // 	id: string
 // 	image: string
