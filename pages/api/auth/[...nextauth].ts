@@ -12,6 +12,18 @@ export const authOptions = {
 			clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
 		}),
 	],
+	callbacks: {
+		async session(params) {
+			// Send properties to the client, like an access_token and user id from a provider.
+			// session.accessToken = token.accessToken
+			// session.user.id = token.id
+
+			// return session
+			// console.log(params)
+			params.session.user.id = params.user.id
+			return params.session
+		},
+	},
 }
 
 export default NextAuth(authOptions)

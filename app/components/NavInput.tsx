@@ -46,7 +46,7 @@ function NavInput({ coins }: { coins: coin[] }) {
 			} transition-all ease-in-out duration-500`}
 		>
 			<input
-				className={`box-sizing h-full outline-none border-2 border-gray-200 p-2 w-full rounded-md ${
+				className={`h-full outline-none border-2 border-gray-200 p-2 w-full rounded-md ${
 					focusComplete && 'rounded-b-none'
 				}`}
 				placeholder={`${focusComplete ? 'Search coin or exchange' : 'Search'}`}
@@ -74,7 +74,7 @@ function NavInput({ coins }: { coins: coin[] }) {
 						return (
 							<Link
 								key={coin.id}
-								href={`/coin/${coin.name}`}
+								href={`/coin/${coin.id}`}
 								className='text-left hover:bg-blue-100 py-1 px-2'
 							>
 								{coin.name}

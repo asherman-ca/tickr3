@@ -31,6 +31,11 @@ export type coin = {
 	price_change_percentage_7d_in_currency: number
 }
 
+export type coinView = {
+	market_cap_rank: number
+	id: string
+}
+
 // export type coin = {
 // 	id: string
 // 	image: string
