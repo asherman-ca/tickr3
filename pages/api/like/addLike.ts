@@ -9,13 +9,23 @@ export default async function handler(
 	res: NextApiResponse
 ) {
 	const session = await getServerSession(req, res, authOptions)
-	console.log('server sesh', session)
-	if (req.method === 'GET') {
+	console.log('session', session.user.id)
+	console.log('req.body', req.body.coinId)
+	if (req.method === 'POST') {
 		try {
-			const data = await prisma.like.findMany()
+			const data = await prisma.like.create({
+				data: {
+					userId: session.user.id,
+					coinId: req.body.coinId,
+				},
+			})
 			res.status(200).json(data)
 		} catch (err) {
-			res.status(403).json({ err: 'Error has occured whilst fetching likes' })
+			res
+				.status(403)
+				.json({
+					err: `Error has occured while liking post userId: ${session.user.id}, coinId: ${req.body.coinId}`,
+				})
 		}
 	}
 }

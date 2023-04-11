@@ -26,7 +26,7 @@
 	background: var(--color-bg-grey);
 }
 
-.box-sizing {
-	box-sizing: content-box;
+.scrollable::-webkit-scrollbar {
+	display: none;
 }
 

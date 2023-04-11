@@ -63,7 +63,7 @@ model Like {
   userId String
   user   User   @relation(fields: [userId], references: [id])
 
-  @@unique([userId])
+  @@unique([userId, coinId])
 }
 
 model Order {
@@ -74,6 +74,4 @@ model Order {
   price  Float
   createdAt DateTime @default(now())
   user   User   @relation(fields: [userId], references: [id])
-
-  @@unique([userId])
 }
