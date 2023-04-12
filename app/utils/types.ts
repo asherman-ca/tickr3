@@ -48,6 +48,7 @@ export type marketType = {
 	trust_score: string
 	coin_id: string
 	target_coin_id: string
+	trade_url: string
 }
 
 export type coinView = {

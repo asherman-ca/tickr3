@@ -1,4 +1,3 @@
-'use client'
 import { marketType } from '@/app/utils/types'
 import cuid from 'cuid'
 import Image from 'next/image'
@@ -11,7 +10,6 @@ function TickrBar({
 	title: string
 	markets: marketType[]
 }) {
-	console.log('marks', markets)
 	return (
 		<div className='flex flex-col gap-2'>
 			<div className='text-xl font-medium'>{title} Markets</div>
@@ -28,10 +26,18 @@ function TickrBar({
 					</tr>
 				</thead>
 				<tbody className='font-normal'>
-					{markets.slice(0, 5).map((market, idx) => (
+					{markets.map((market, idx) => (
 						<tr key={cuid()} className='hover:bg-blue-50'>
 							<td className='text-start py-2'>{idx + 1}</td>
-							<td className='text-start'>{market.market.name}</td>
+							<td className='text-start'>
+								<a
+									href={`${market.trade_url}`}
+									target='_blank'
+									rel='noopener noreferrer'
+								>
+									{market.market.name}
+								</a>
+							</td>
 							<td>
 								<div className='text-start flex items-center gap-1'>
 									<span className='flex items-center gap-1'>
