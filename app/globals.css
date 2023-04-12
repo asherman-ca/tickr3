@@ -14,7 +14,7 @@
 }
 
 .layout {
-	@apply flex flex-col p-8;
+	@apply flex flex-col gap-4 p-8;
 }
 
 .box-shadow-grey {

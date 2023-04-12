@@ -15,8 +15,6 @@ async function Nav() {
 		getStaticGlobal(),
 	])
 
-	console.log('global', global)
-
 	return (
 		<nav className='flex bg-white pt-2 pb-4 box-shadow-grey flex-col'>
 			<div className='flex justify-between pb-2 border-b-2 border-gray-100 px-8 text-xs'>

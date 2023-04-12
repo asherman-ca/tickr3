@@ -31,8 +31,29 @@ export type coinType = {
 	price_change_percentage_7d_in_currency: number
 }
 
+export type marketType = {
+	base: string
+	target: string
+	market: {
+		name: string
+		identifier: string
+	}
+	last: number
+	volume: number
+	converted_volume: {
+		usd: number
+		btc: number
+		eth: number
+	}
+	trust_score: string
+	coin_id: string
+	target_coin_id: string
+}
+
 export type coinView = {
 	id: string
+	name: string
+	symbol: string
 	market_cap_rank: number
 	description: {
 		en: string
@@ -76,7 +97,7 @@ export type coinView = {
 			usd: number
 		}
 	}
-	tickers: any[]
+	tickers: marketType[]
 }
 
 export type sessionType = {

@@ -108,6 +108,7 @@ function NavInput({ coins }: { coins: coinType[] }) {
 												alt={coin.name}
 												height={24}
 												width={24}
+												className='rounded-full'
 											/>
 											<span className='font-medium'>{coin.name} </span>
 											<span className='text-slate-500'>
@@ -135,6 +136,7 @@ function NavInput({ coins }: { coins: coinType[] }) {
 										alt={coin.name}
 										height={24}
 										width={24}
+										className='rounded-full'
 									/>
 									<span className='font-medium'>{coin.name} </span>
 									<span className='text-slate-500'>
