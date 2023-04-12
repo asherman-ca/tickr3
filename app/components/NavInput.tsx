@@ -1,11 +1,11 @@
 'use client'
-import { coin } from '../utils/types'
+import { coinType } from '../utils/types'
 import { useState, useMemo, useEffect, useRef } from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import { MagnifyingGlassIcon } from '@heroicons/react/24/outline'
 
-function NavInput({ coins }: { coins: coin[] }) {
+function NavInput({ coins }: { coins: coinType[] }) {
 	const [search, setSearch] = useState('')
 	const [focusIn, setFocusIn] = useState(false)
 	const [focusComplete, setFocusComplete] = useState(false)

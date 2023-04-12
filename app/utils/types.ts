@@ -1,4 +1,4 @@
-export type coin = {
+export type coinType = {
 	id: string
 	symbol: string
 	name: string
@@ -34,7 +34,9 @@ export type coin = {
 export type coinView = {
 	id: string
 	market_cap_rank: number
-	description: string
+	description: {
+		en: string
+	}
 	links: {
 		homepage: string[]
 		blockchain_site: string[]
@@ -106,6 +108,7 @@ export type globalType = {
 		}
 		market_cap_percentage: {
 			btc: number
+			eth: number
 		}
 	}
 }

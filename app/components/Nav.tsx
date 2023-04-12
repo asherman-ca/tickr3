@@ -1,44 +1,72 @@
 import { authOptions } from '@/pages/api/auth/[...nextauth]'
 import { getServerSession } from 'next-auth'
+import Link from 'next/link'
 
-import { coin } from '../utils/types'
 import NavInput from './NavInput'
 import Login from './Login'
 import Logout from './Logout'
-import { getStaticGlobal } from '../utils/fetchers'
-
-const getCoins = async (): Promise<coin[]> => {
-	const res = await fetch(
-		`https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&price_change_percentage=1h,24h,7d,30d`,
-		{
-			next: { revalidate: 300 },
-		}
-	)
-	return await res.json()
-}
+import { getStaticGlobal, getStaticCoins } from '../utils/fetchers'
+import { numParse, moneyParse, numParseNoDecimal } from '../utils/parsers'
 
 async function Nav() {
 	const [data, session, global] = await Promise.all([
-		getCoins(),
+		getStaticCoins(),
 		getServerSession(authOptions),
 		getStaticGlobal(),
 	])
-	console.log('navglobal', global)
+
+	console.log('global', global)
+
 	return (
 		<nav className='flex bg-white pt-2 pb-4 box-shadow-grey flex-col'>
-			<div className='flex justify-between pb-2 border-b-2 border-gray-100 px-8'>
-				<div className='flex gap-4'>
-					<span>Cryptos: 23,253</span>
-					<span>Exchange: 603</span>
+			<div className='flex justify-between pb-2 border-b-2 border-gray-100 px-8 text-xs'>
+				<div className='flex gap-4 items-center'>
+					<div>
+						Cryptos:{' '}
+						<span className='text-blue-500'>
+							{numParseNoDecimal(global.data.active_cryptocurrencies)}
+						</span>
+					</div>
+					<div>
+						Exchange:{' '}
+						<span className='text-blue-500'>
+							{numParseNoDecimal(global.data.markets)}
+						</span>
+					</div>
+					<div>
+						Market Cap:{' '}
+						<span className='text-blue-500'>
+							{moneyParse(global.data.total_market_cap.usd)}
+						</span>
+					</div>
+					<div>
+						24h Vol:{' '}
+						<span className='text-blue-500'>
+							{moneyParse(global.data.total_volume.usd)}
+						</span>
+					</div>
+					<div>
+						Dominance:{' '}
+						<span className='text-blue-500'>
+							BTC: {numParse(global.data.market_cap_percentage.btc)}% ETH:{' '}
+							{numParse(global.data.market_cap_percentage.eth)}%
+						</span>
+					</div>
 				</div>
 				<div>{!session ? <Login /> : <Logout />}</div>
 			</div>
 			<div className='flex pt-4 px-8'>
 				<div className='basis-4/6 flex items-center justify-start gap-8'>
 					<span className='text-2xl font-medium'>Tickr</span>
-					<button className='font-medium'>Cyptocurrencies</button>
-					<button className='font-medium'>Exchanges</button>
-					<button className='font-medium'>Leaderboard</button>
+					<Link className='font-medium' href='/'>
+						Cryptocurrencies
+					</Link>
+					<Link className='font-medium' href='/exchanges'>
+						Exchanges
+					</Link>
+					<Link className='font-medium' href='/leaderboard'>
+						Leaderboard
+					</Link>
 				</div>
 				<div className='hidden sm:flex basis-2/6 justify-end'>
 					<NavInput coins={data} />
