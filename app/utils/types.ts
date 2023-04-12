@@ -32,8 +32,49 @@ export type coin = {
 }
 
 export type coinView = {
-	market_cap_rank: number
 	id: string
+	market_cap_rank: number
+	description: string
+	links: {
+		homepage: string[]
+		blockchain_site: string[]
+		repos_url: {
+			github: string[]
+		}
+	}
+	image: {
+		thumb: string
+		small: string
+		large: string
+	}
+	genesis_date: string
+	market_data: {
+		current_price: {
+			usd: number
+		}
+		ath_change_percentage: {
+			usd: number
+		}
+		ath_date: {
+			usd: string
+		}
+		market_cap: {
+			usd: number
+		}
+		total_volume: {
+			usd: number
+		}
+		price_change_percentage_1h_in_currency: {
+			usd: number
+		}
+		price_change_percentage_24h_in_currency: {
+			usd: number
+		}
+		price_change_percentage_7d_in_currency: {
+			usd: number
+		}
+	}
+	tickers: any[]
 }
 
 export type sessionType = {
@@ -50,6 +91,23 @@ export type likeType = {
 	coinId: string
 	userId: string
 	id: string
+}
+
+export type globalType = {
+	data: {
+		total_market_cap: {
+			usd: number
+		}
+		market_cap_change_percentage_24h_usd: number
+		markets: number
+		active_cryptocurrencies: number
+		total_volume: {
+			usd: number
+		}
+		market_cap_percentage: {
+			btc: number
+		}
+	}
 }
 
 // export type coin = {
@@ -101,83 +159,83 @@ export type likeType = {
 // 	}
 // }
 
-export type coinViewType = {
-	image: {
-		small: string
-		thumb: string
-	}
-	links: {
-		homepage: string[]
-		blockchain_site: string
-		subreddit_url: string
-		repos_url: {
-			github: string[]
-		}
-	}
-	name: string
-	symbol: string
-	market_data: {
-		current_price: {
-			usd: number
-		}
-		price_change_percentage_24h: number
-		price_change_percentage_7d: number
-		ath_change_percentage: {
-			usd: number
-		}
-		total_volume: {
-			usd: number
-		}
-		market_cap: {
-			usd: number
-		}
-	}
-	description: {
-		en: string
-	}
-	tickers: any[]
-	id: any
-}
+// export type coinViewType = {
+// 	image: {
+// 		small: string
+// 		thumb: string
+// 	}
+// 	links: {
+// 		homepage: string[]
+// 		blockchain_site: string
+// 		subreddit_url: string
+// 		repos_url: {
+// 			github: string[]
+// 		}
+// 	}
+// 	name: string
+// 	symbol: string
+// 	market_data: {
+// 		current_price: {
+// 			usd: number
+// 		}
+// 		price_change_percentage_24h: number
+// 		price_change_percentage_7d: number
+// 		ath_change_percentage: {
+// 			usd: number
+// 		}
+// 		total_volume: {
+// 			usd: number
+// 		}
+// 		market_cap: {
+// 			usd: number
+// 		}
+// 	}
+// 	description: {
+// 		en: string
+// 	}
+// 	tickers: any[]
+// 	id: any
+// }
 
-export type global = {
-	data: {
-		total_market_cap: {
-			usd: number
-		}
-		market_cap_change_percentage_24h_usd: number
-	}
-}
+// export type global = {
+// 	data: {
+// 		total_market_cap: {
+// 			usd: number
+// 		}
+// 		market_cap_change_percentage_24h_usd: number
+// 	}
+// }
 
-export type sortParamType = {
-	type: string
-	direction: string
-}
+// export type sortParamType = {
+// 	type: string
+// 	direction: string
+// }
 
-export type like = {
-	id: string
-	data: {
-		userRef: string
-		coinId: string
-	}
-}
+// export type like = {
+// 	id: string
+// 	data: {
+// 		userRef: string
+// 		coinId: string
+// 	}
+// }
 
-export type order = {
-	id: string
-	data: {
-		coin: string
-		coinId: string
-		image: string
-		imageLarge: string
-		price: number
-		spent: number
-		timestamp: string
-		type: string
-		userRef: string
-	}
-}
+// export type order = {
+// 	id: string
+// 	data: {
+// 		coin: string
+// 		coinId: string
+// 		image: string
+// 		imageLarge: string
+// 		price: number
+// 		spent: number
+// 		timestamp: string
+// 		type: string
+// 		userRef: string
+// 	}
+// }
 
-export type newOrder = {
-	coin: string
-	spent: number
-	price: number
-}
+// export type newOrder = {
+// 	coin: string
+// 	spent: number
+// 	price: number
+// }

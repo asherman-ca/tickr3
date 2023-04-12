@@ -5,23 +5,25 @@ import { coin } from '../utils/types'
 import NavInput from './NavInput'
 import Login from './Login'
 import Logout from './Logout'
+import { getStaticGlobal } from '../utils/fetchers'
 
 const getCoins = async (): Promise<coin[]> => {
 	const res = await fetch(
 		`https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&price_change_percentage=1h,24h,7d,30d`,
 		{
 			next: { revalidate: 300 },
-			// cache: 'no-store',
 		}
 	)
 	return await res.json()
 }
 
 async function Nav() {
-	const [data, session] = await Promise.all([
+	const [data, session, global] = await Promise.all([
 		getCoins(),
 		getServerSession(authOptions),
+		getStaticGlobal(),
 	])
+	console.log('navglobal', global)
 	return (
 		<nav className='flex bg-white pt-2 pb-4 box-shadow-grey flex-col'>
 			<div className='flex justify-between pb-2 border-b-2 border-gray-100 px-8'>

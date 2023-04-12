@@ -1,4 +1,4 @@
-import { coinView, likeType } from './types'
+import { coinView, likeType, globalType } from './types'
 import axios from 'axios'
 
 export const getStaticLikes = async (coinId: string): Promise<likeType[]> => {
@@ -13,6 +13,14 @@ export const getStaticLikes = async (coinId: string): Promise<likeType[]> => {
 
 export const getStaticCoin = async (coinId: string): Promise<coinView> => {
 	const res = await fetch(`https://api.coingecko.com/api/v3/coins/${coinId}`, {
+		next: { revalidate: 300 },
+	})
+
+	return await res.json()
+}
+
+export const getStaticGlobal = async (): Promise<globalType> => {
+	const res = await fetch('https://api.coingecko.com/api/v3/global', {
 		next: { revalidate: 300 },
 	})
 

@@ -9,14 +9,12 @@ export default async function handler(
 	res: NextApiResponse
 ) {
 	if (req.method === 'GET') {
-		console.log('SLUG', req.query.slug)
 		try {
 			const data = await prisma.like.findMany({
 				where: {
 					coinId: req.query.slug as string,
 				},
 			})
-			console.log('DATA', data)
 			res.status(200).json(data)
 		} catch (err) {
 			res.status(403).json({ err: 'Error has occured whilst fetching likes' })

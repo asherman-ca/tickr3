@@ -13,12 +13,15 @@
 	};
 }
 
+.layout {
+	@apply flex flex-col p-8;
+}
+
 .box-shadow-grey {
 	box-shadow: inset 0 -1px #eaeaea;
 }
 
 .color-bg {
-	/* background-image: var(--color-bg-grad); */
 	background: var(--color-bg-global);
 }
 
