@@ -46,6 +46,12 @@ export type sessionType = {
 	expires: string
 }
 
+export type likeType = {
+	coinId: string
+	userId: string
+	id: string
+}
+
 // export type coin = {
 // 	id: string
 // 	image: string
