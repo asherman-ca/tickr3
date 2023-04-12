@@ -3,7 +3,8 @@ import { coinType } from '../utils/types'
 import { useState, useMemo, useEffect, useRef } from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
-import { MagnifyingGlassIcon } from '@heroicons/react/24/outline'
+import { MagnifyingGlassIcon, FireIcon } from '@heroicons/react/24/outline'
+import Image from 'next/image'
 
 function NavInput({ coins }: { coins: coinType[] }) {
 	const [search, setSearch] = useState('')
@@ -91,15 +92,31 @@ function NavInput({ coins }: { coins: coinType[] }) {
 				>
 					{displayCoins.length === 0 && (
 						<>
-							<div className='text-left py-1 px-2'>Trending</div>
+							<div className='text-left px-2 py-2 flex items-center gap-1'>
+								Trending <FireIcon height={24} width={24} color='red' />
+							</div>
 							{trendingCoins.map((coin) => {
 								return (
 									<Link
 										key={coin.id}
 										href={`/coin/${coin.id}`}
-										className='text-left hover:bg-blue-100 py-1 px-2'
+										className='text-left hover:bg-blue-100 px-2 py-2 flex items-center justify-between'
 									>
-										{coin.name}
+										<div className='flex items-center gap-2'>
+											<Image
+												src={coin.image}
+												alt={coin.name}
+												height={24}
+												width={24}
+											/>
+											<span className='font-medium'>{coin.name} </span>
+											<span className='text-slate-500'>
+												{coin.symbol.toUpperCase()}
+											</span>
+										</div>
+										<div className='text-slate-500'>
+											#{coin.market_cap_rank}
+										</div>
 									</Link>
 								)
 							})}
@@ -110,9 +127,21 @@ function NavInput({ coins }: { coins: coinType[] }) {
 							<Link
 								key={coin.id}
 								href={`/coin/${coin.id}`}
-								className='text-left hover:bg-blue-100 py-1 px-2'
+								className='text-left hover:bg-blue-100 py-2 px-2 flex items-center justify-between'
 							>
-								{coin.name}
+								<div className='flex items-center gap-2'>
+									<Image
+										src={coin.image}
+										alt={coin.name}
+										height={24}
+										width={24}
+									/>
+									<span className='font-medium'>{coin.name} </span>
+									<span className='text-slate-500'>
+										{coin.symbol.toUpperCase()}
+									</span>
+								</div>
+								<div className='text-slate-500'>#{coin.market_cap_rank}</div>
 							</Link>
 						)
 					})}
