@@ -46,3 +46,8 @@ export const addLike = async (coinId: string) => {
 	const res = await axios.post('/api/like/addLike', { coinId })
 	return res.data
 }
+
+export const removeLike = async (coinId: string) => {
+	const res = await axios.post('/api/like/removeLike', { coinId })
+	return res.data
+}

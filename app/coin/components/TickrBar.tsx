@@ -28,8 +28,8 @@ function TickrBar({
 				<tbody className='font-normal'>
 					{markets.map((market, idx) => (
 						<tr key={cuid()} className='hover:bg-blue-50'>
-							<td className='text-start py-2'>{idx + 1}</td>
-							<td className='text-start'>
+							<td className='text-start py-2 font-medium'>{idx + 1}</td>
+							<td className='text-start font-medium'>
 								<a
 									href={`${market.trade_url}`}
 									target='_blank'
@@ -38,7 +38,7 @@ function TickrBar({
 									{market.market.name}
 								</a>
 							</td>
-							<td>
+							<td className='font-medium'>
 								<div className='text-start flex items-center gap-1'>
 									<span className='flex items-center gap-1'>
 										<Image
@@ -52,7 +52,9 @@ function TickrBar({
 									<span>{market.target}</span>
 								</div>
 							</td>
-							<td className='text-end'>Price</td>
+							<td className='text-end font-medium'>
+								{moneyParse(market.last)}
+							</td>
 							<td className='text-end'>
 								{moneyParse(market.converted_volume.usd)}
 							</td>

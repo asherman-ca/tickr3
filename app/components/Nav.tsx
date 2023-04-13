@@ -16,8 +16,8 @@ async function Nav() {
 	])
 
 	return (
-		<nav className='flex bg-white pt-2 pb-4 box-shadow-grey flex-col'>
-			<div className='flex justify-between pb-2 border-b-2 border-gray-100 px-8 text-xs'>
+		<nav className='flex bg-white pt-2 pb-4 box-shadow-grey flex-col px-12'>
+			<div className='flex justify-between pb-2 border-b-2 border-gray-100  text-xs'>
 				<div className='flex gap-4 items-center'>
 					<div>
 						Cryptos:{' '}
@@ -53,7 +53,7 @@ async function Nav() {
 				</div>
 				<div>{!session ? <Login /> : <Logout />}</div>
 			</div>
-			<div className='flex pt-4 px-8'>
+			<div className='flex pt-4 '>
 				<div className='basis-4/6 flex items-center justify-start gap-8'>
 					<span className='text-2xl font-medium'>Tickr</span>
 					<Link className='font-medium' href='/'>
