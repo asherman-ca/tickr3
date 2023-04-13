@@ -1,21 +1,26 @@
 'use client'
 import { useMemo } from 'react'
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
-import { likeType } from '@/app/utils/types'
+import { coinView, likeType } from '@/app/utils/types'
 import { getCoinLikes, addLike, removeLike } from '@/app/utils/fetchers'
 import { HeartIcon } from '@heroicons/react/24/outline'
+import { HeartIcon as HeartIconSolid } from '@heroicons/react/24/solid'
 import { useSession } from 'next-auth/react'
 import { toast } from 'react-hot-toast'
+import { moneyParse, numParse } from '@/app/utils/parsers'
+import Image from 'next/image'
 
 function InfoBar({
 	coinId,
 	staticLikes,
+	coin,
 }: {
 	coinId: string
 	staticLikes: likeType[]
+	coin: coinView
 }) {
 	const queryClient = useQueryClient()
-	const { data: session }: any = useSession()
+	const { data: session, status: sessionStatus }: any = useSession()
 
 	const {
 		data: likes,
@@ -45,7 +50,7 @@ function InfoBar({
 	})
 
 	const userLike = useMemo(() => {
-		if (likes) {
+		if (likes && session) {
 			return likes.filter((like) => {
 				return like.userId === session.user.id
 			})
@@ -67,32 +72,99 @@ function InfoBar({
 		}
 	}
 
-	console.log('client session', session)
+	console.log('client session', sessionStatus)
 	console.log('userLike', userLike)
 
 	return (
-		<div className='flex flex-col'>
-			<div className='flex flex-col'>
-				<div>Name</div>
-				<div>Table</div>
+		<div className='flex flex-col gap-2 border-b-2 border-slate-200 pb-4 px-12 pt-8'>
+			<div className='flex flex-col gap-2'>
+				<div className='flex gap-2'>
+					<div className='flex gap-2'>
+						<Image
+							height={48}
+							width={48}
+							src={coin.image.small}
+							alt='coin image'
+							className='rounded-full'
+						/>
+						<div className='flex flex-col justify-center items-start'>
+							<div className='text-lg'>{coin.name}</div>
+							<div className='text-slate-500'>
+								({coin.symbol.toUpperCase()})
+							</div>
+						</div>
+					</div>
+					<div className='flex flex-col justify-center items-start'>
+						<div>{coin.market_data.current_price.usd}</div>
+						<div className='text-slate-500'>1.0000</div>
+					</div>
+				</div>
+				<div className='flex gap-2'>
+					<div>
+						{numParse(
+							coin.market_data.price_change_percentage_1h_in_currency.usd
+						)}
+						%
+					</div>
+					<div>
+						{numParse(
+							coin.market_data.price_change_percentage_24h_in_currency.usd
+						)}
+						%
+					</div>
+					<div>
+						{numParse(
+							coin.market_data.price_change_percentage_7d_in_currency.usd
+						)}
+						%
+					</div>
+					<div>{moneyParse(coin.market_data.market_cap.usd)}</div>
+					<div>{moneyParse(coin.market_data.total_volume.usd)}</div>
+				</div>
 			</div>
 
 			<div className='flex justify-between'>
-				<div className='flex'>
-					<div className='pr-2 border-slate-300 border-r-2 flex items-center'>
-						<HeartIcon
-							height={24}
-							width={24}
-							onClick={handleLike}
-							color={`${userLike.length && 'red'}`}
-						/>
-						{likes ? likes.length : staticLikes.length}
-						{/* <button onClick={submitLike}>Like</button> */}
+				<div className='flex items-center'>
+					<div className='pr-4 border-slate-300 border-r-2 flex items-center gap-2'>
+						{!userLike.length ? (
+							<HeartIcon
+								height={20}
+								width={20}
+								onClick={handleLike}
+								className='hover:scale-110 transition-all duration-300 ease-in-out cursor-pointer hover:text-red-500'
+							/>
+						) : (
+							<HeartIconSolid
+								height={20}
+								width={20}
+								onClick={handleLike}
+								color={'red'}
+								className='hover:scale-110 transition-all duration-300 ease-in-out cursor-pointer'
+							/>
+						)}
+
+						<span className='text-slate-500'>
+							{likes ? likes.length : staticLikes.length}
+						</span>
 					</div>
-					<div className='pl-2'>explorers</div>
+					<div className='ml-4 group relative'>
+						<span className='cursor-pointer text-slate-500'>Explorers</span>
+						<div className='absolute z-50 hidden group-hover:block min-w-full -translate-x-1/4'>
+							<div className='flex flex-col mt-2 p-4 bg-white shadow-md'>
+								{!coin.links.blockchain_site && <div>No Entries</div>}
+								{coin.links.blockchain_site?.map((site) => {
+									return (
+										<a target='_blank' rel='noopener noreferrer' href={site}>
+											{site.split('//')[1]?.split('/')[0]}
+										</a>
+									)
+								})}
+							</div>
+						</div>
+					</div>
 				</div>
 
-				<div className='flex'>
+				<div className='flex gap-2'>
 					<div>link1</div>
 					<div>link1</div>
 					<div>link1</div>

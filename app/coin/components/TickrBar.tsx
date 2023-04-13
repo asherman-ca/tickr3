@@ -11,7 +11,7 @@ function TickrBar({
 	markets: marketType[]
 }) {
 	return (
-		<div className='flex flex-col gap-2'>
+		<div className='flex flex-col gap-2 px-12 py-4 border-b-2 border-slate-200'>
 			<div className='text-xl font-medium'>{title} Markets</div>
 			<table className=''>
 				<thead className=''>

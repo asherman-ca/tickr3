@@ -12,10 +12,10 @@ async function page({ params }: { params: { id: string } }) {
 		.slice(0, 5)
 
 	return (
-		<div className='layout'>
-			<InfoBar coinId={coin.id} staticLikes={likes} />
+		<div className='srollable'>
+			<InfoBar coin={coin} coinId={coin.id} staticLikes={likes} />
 			<TickrBar title={coin.name} markets={filteredMarkets} />
-			<div className='flex flex-col gap-2 text-base'>
+			<div className='flex flex-col gap-2 text-base px-12 pt-4 pb-8'>
 				<div className='text-xl font-medium'>
 					What is {coin.name} ({coin.symbol.toUpperCase()})
 				</div>
