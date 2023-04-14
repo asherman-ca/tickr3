@@ -37,19 +37,14 @@ export const getStaticGlobal = async (): Promise<globalType> => {
 	return await res.json()
 }
 
-export const getUserLikes = async (): Promise<likeType[]> => {
+export const getUserLikes = async (userId: string): Promise<likeType[]> => {
 	const res = await axios.get(
-		`${process.env.HOST_URL || 'http://localhost:3000'}/api/like/userLikes`
+		`${
+			process.env.HOST_URL || 'http://localhost:3000'
+		}/api/like/userLikes/${userId}`
 	)
 	return res.data
 }
-
-// export const getUserLikes = async (): Promise<likeType[]> => {
-// 	const res = await fetch(
-// 		`${process.env.HOST_URL || 'http://localhost:3000'}/api/like/userLikes`
-// 	)
-// 	return await res.json()
-// }
 
 export const getCoinLikes = async (coinId: string): Promise<likeType[]> => {
 	const res = await axios.get(`/api/like/${coinId}`)

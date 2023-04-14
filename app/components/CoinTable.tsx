@@ -5,16 +5,19 @@ import { getUserLikes } from '../utils/fetchers'
 import { useSession } from 'next-auth/react'
 
 const CoinTable = ({ coins }: { coins: coinType[] }) => {
-	// const { data } = useSession()
+	const { data: session } = useSession() as any
 	const [likes, setLikes] = useState<likeType[]>([])
 
 	useEffect(() => {
-		const fetchLikes = async () => {
-			const likes = await getUserLikes()
-			setLikes(likes)
+		if (session) {
+			const fetchLikes = async () => {
+				const likes = await getUserLikes(session.user.id)
+				setLikes(likes)
+			}
+
+			fetchLikes()
 		}
-		fetchLikes()
-	}, [])
+	}, [session])
 
 	console.log(likes, 'likes')
 
