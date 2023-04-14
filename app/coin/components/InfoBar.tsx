@@ -8,6 +8,7 @@ import { HeartIcon as HeartIconSolid } from '@heroicons/react/24/solid'
 import { useSession } from 'next-auth/react'
 import { toast } from 'react-hot-toast'
 import { moneyParse, numParse } from '@/app/utils/parsers'
+import LikeButton from './LikeButton'
 import Image from 'next/image'
 
 function InfoBar({
@@ -72,9 +73,9 @@ function InfoBar({
 		}
 	}
 
-	console.log('client session', sessionStatus)
-	console.log('userLike', userLike)
-	console.log('coin', coin)
+	// console.log('client session', sessionStatus)
+	// console.log('userLike', userLike)
+	// console.log('coin', coin)
 
 	return (
 		<div className='flex flex-col gap-2 border-b-2 border-slate-200 pb-4 px-12 pt-8'>
@@ -126,28 +127,7 @@ function InfoBar({
 
 			<div className='flex justify-between'>
 				<div className='flex items-center'>
-					<div className='pr-4 border-slate-300 border-r-2 flex items-center gap-2'>
-						{!userLike.length ? (
-							<HeartIcon
-								height={20}
-								width={20}
-								onClick={handleLike}
-								className='hover:scale-110 transition-all duration-300 ease-in-out cursor-pointer hover:text-red-500'
-							/>
-						) : (
-							<HeartIconSolid
-								height={20}
-								width={20}
-								onClick={handleLike}
-								color={'red'}
-								className='hover:scale-110 transition-all duration-300 ease-in-out cursor-pointer'
-							/>
-						)}
-
-						<span className='text-slate-500'>
-							{likes ? likes.length : staticLikes.length}
-						</span>
-					</div>
+					<LikeButton coinId={coinId} staticLikes={staticLikes} />
 					<div className='ml-4 group relative'>
 						<span className='cursor-pointer text-slate-500'>Explorers</span>
 						<div className='absolute z-50 hidden group-hover:block min-w-full -translate-x-1/4'>
