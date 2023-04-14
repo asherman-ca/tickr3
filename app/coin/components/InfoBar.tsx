@@ -74,6 +74,7 @@ function InfoBar({
 
 	console.log('client session', sessionStatus)
 	console.log('userLike', userLike)
+	console.log('coin', coin)
 
 	return (
 		<div className='flex flex-col gap-2 border-b-2 border-slate-200 pb-4 px-12 pt-8'>
@@ -150,15 +151,24 @@ function InfoBar({
 					<div className='ml-4 group relative'>
 						<span className='cursor-pointer text-slate-500'>Explorers</span>
 						<div className='absolute z-50 hidden group-hover:block min-w-full -translate-x-1/4'>
-							<div className='flex flex-col mt-2 p-4 bg-white shadow-md'>
-								{!coin.links.blockchain_site && <div>No Entries</div>}
-								{coin.links.blockchain_site?.map((site) => {
-									return (
-										<a target='_blank' rel='noopener noreferrer' href={site}>
-											{site.split('//')[1]?.split('/')[0]}
-										</a>
-									)
-								})}
+							<div className='flex flex-col mt-2 p-2 bg-white shadow-md rounded-md gap-1'>
+								{!coin.links.blockchain_site && (
+									<div className='p-1'>No Entries</div>
+								)}
+								{coin.links.blockchain_site
+									?.filter((site) => site.length > 0)
+									.map((site) => {
+										return (
+											<a
+												target='_blank'
+												rel='noopener noreferrer'
+												href={site}
+												className='p-1 rounded-md hover:bg-blue-100'
+											>
+												{site.split('//')[1]?.split('/')[0]}
+											</a>
+										)
+									})}
 							</div>
 						</div>
 					</div>
