@@ -4,7 +4,13 @@ import { coinType, likeType } from '../utils/types'
 import { getUserLikes } from '../utils/fetchers'
 import { useSession } from 'next-auth/react'
 
-const CoinTable = ({ coins }: { coins: coinType[] }) => {
+const CoinTable = ({
+	coins,
+	initialLikes,
+}: {
+	coins: coinType[]
+	initialLikes: likeType[]
+}) => {
 	const { data: session } = useSession() as any
 	const [likes, setLikes] = useState<likeType[]>([])
 
@@ -18,6 +24,8 @@ const CoinTable = ({ coins }: { coins: coinType[] }) => {
 			fetchLikes()
 		}
 	}, [session])
+
+	console.log(initialLikes, 'initialLikes')
 
 	console.log(likes, 'likes')
 

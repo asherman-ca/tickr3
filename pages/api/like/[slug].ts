@@ -16,8 +16,6 @@ export default async function handler(
 					coinId: req.query.slug as string,
 				},
 			})
-			console.log('session', session)
-			console.log('data', data)
 			res.status(200).json(data)
 		} catch (err) {
 			res.status(403).json({ err: 'Error has occured whilst fetching likes' })
