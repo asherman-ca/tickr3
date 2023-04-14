@@ -65,6 +65,7 @@ export type coinView = {
 		repos_url: {
 			github: string[]
 		}
+		subreddit_url: string
 	}
 	image: {
 		thumb: string

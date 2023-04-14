@@ -24,6 +24,14 @@ export const numParseNoDecimal = (num: number): string => {
 	return f.format(num)
 }
 
+export const numParseTwoDecimal = (num: number): string => {
+	const f = Intl.NumberFormat('en-us', {
+		minimumFractionDigits: 2,
+		maximumFractionDigits: 2,
+	})
+	return f.format(num)
+}
+
 export const moneyParse = (num: number): string => {
 	if (num) {
 		const options = {

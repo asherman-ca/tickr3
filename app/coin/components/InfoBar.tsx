@@ -1,8 +1,13 @@
 'use client'
 import { coinView, likeType } from '@/app/utils/types'
-import { moneyParse, numParse } from '@/app/utils/parsers'
+import { moneyParse, numParseTwoDecimal } from '@/app/utils/parsers'
 import LikeButton from './LikeButton'
 import Image from 'next/image'
+import {
+	CircleStackIcon,
+	LinkIcon,
+	CodeBracketSquareIcon,
+} from '@heroicons/react/24/outline'
 
 function InfoBar({
 	coinId,
@@ -14,9 +19,9 @@ function InfoBar({
 	coin: coinView
 }) {
 	return (
-		<div className='flex flex-col gap-2 border-b-2 border-slate-200 pb-4 px-12 pt-8'>
-			<div className='flex flex-col gap-2'>
-				<div className='flex gap-8'>
+		<div className='flex flex-col gap-4 border-b-2 border-slate-200 pb-4 pt-8'>
+			<div className='flex flex-col gap-4 px-12'>
+				<div className='flex gap-4'>
 					<div className='flex gap-2'>
 						<Image
 							height={48}
@@ -34,38 +39,75 @@ function InfoBar({
 					</div>
 					<div className='flex flex-col justify-center items-start'>
 						<span className='text-2xl font-medium'>
-							${coin.market_data.current_price.usd}
+							{moneyParse(coin.market_data.current_price.usd)}
 						</span>
 						<div className='text-slate-500'>
-							1.000 {coin.symbol.toUpperCase()}
+							1.00000 {coin.symbol.toUpperCase()}
 						</div>
 					</div>
 				</div>
-				<div className='flex gap-2'>
+				<div className='flex gap-8 text-base'>
 					<div>
-						{numParse(
-							coin.market_data.price_change_percentage_1h_in_currency.usd
-						)}
-						%
+						<div className='text-slate-500'>1h %</div>
+						<div
+							className={`${
+								coin.market_data.price_change_percentage_1h_in_currency.usd < 0
+									? 'text-red-500'
+									: 'text-green-500'
+							} font-medium`}
+						>
+							{numParseTwoDecimal(
+								coin.market_data.price_change_percentage_1h_in_currency.usd
+							)}
+							%
+						</div>
 					</div>
 					<div>
-						{numParse(
-							coin.market_data.price_change_percentage_24h_in_currency.usd
-						)}
-						%
+						<div className='text-slate-500'>24hrs %</div>
+						<div
+							className={`${
+								coin.market_data.price_change_percentage_24h_in_currency.usd < 0
+									? 'text-red-500'
+									: 'text-green-500'
+							} font-medium`}
+						>
+							{numParseTwoDecimal(
+								coin.market_data.price_change_percentage_24h_in_currency.usd
+							)}
+							%
+						</div>
 					</div>
 					<div>
-						{numParse(
-							coin.market_data.price_change_percentage_7d_in_currency.usd
-						)}
-						%
+						<div className='text-slate-500'>7d %</div>
+						<div
+							className={`${
+								coin.market_data.price_change_percentage_7d_in_currency.usd < 0
+									? 'text-red-500'
+									: 'text-green-500'
+							} font-medium`}
+						>
+							{numParseTwoDecimal(
+								coin.market_data.price_change_percentage_7d_in_currency.usd
+							)}
+							%
+						</div>
 					</div>
-					<div>{moneyParse(coin.market_data.market_cap.usd)}</div>
-					<div>{moneyParse(coin.market_data.total_volume.usd)}</div>
+					<div>
+						<div className='text-slate-500'>Market Cap</div>
+						<div className='font-medium'>
+							{moneyParse(coin.market_data.market_cap.usd)}
+						</div>
+					</div>
+					<div>
+						<div className='text-slate-500'>Volume (24h)</div>
+						<div className='font-medium'>
+							{moneyParse(coin.market_data.total_volume.usd)}
+						</div>
+					</div>
 				</div>
 			</div>
 
-			<div className='flex justify-between'>
+			<div className='flex justify-between border-t-2 border-slate-200 pt-4 px-12'>
 				<div className='flex items-center'>
 					<LikeButton coinId={coinId} staticLikes={staticLikes} />
 					<div className='ml-4 group relative'>
@@ -83,7 +125,7 @@ function InfoBar({
 												target='_blank'
 												rel='noopener noreferrer'
 												href={site}
-												className='p-1 rounded-md hover:bg-blue-100'
+												className='p-1 rounded-md hover:bg-blue-100 font-medium'
 												key={site}
 											>
 												{site.split('//')[1]?.split('/')[0]}
@@ -95,11 +137,48 @@ function InfoBar({
 					</div>
 				</div>
 
-				<div className='flex gap-2'>
-					<div>link1</div>
-					<div>link1</div>
-					<div>link1</div>
-					<div>link1</div>
+				<div className='flex gap-4 items-center'>
+					<div>
+						<a
+							href={coin.links.homepage[0]}
+							target='_blank'
+							rel='noopener noreferrer'
+						>
+							<Image
+								src={coin.image.small}
+								height={24}
+								width={24}
+								alt='coin homepage'
+							/>
+						</a>
+					</div>
+					<div>
+						<a
+							href={coin.links.blockchain_site[0]}
+							target='_blank'
+							rel='noopener noreferrer'
+						>
+							<CircleStackIcon height={24} width={24} color={'blue'} />
+						</a>
+					</div>
+					<div>
+						<a
+							href={coin.links.subreddit_url}
+							target='_blank'
+							rel='noopener noreferrer'
+						>
+							<LinkIcon height={24} width={24} color={'red'} />
+						</a>
+					</div>
+					<div>
+						<a
+							href={coin.links.repos_url.github[0]}
+							target='_blank'
+							rel='noopener noreferrer'
+						>
+							<CodeBracketSquareIcon height={24} width={24} />
+						</a>
+					</div>
 				</div>
 			</div>
 		</div>
