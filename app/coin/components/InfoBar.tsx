@@ -13,10 +13,12 @@ function InfoBar({
 	coinId,
 	staticLikes,
 	coin,
+	initialUserLike,
 }: {
 	coinId: string
 	staticLikes: likeType[]
 	coin: coinView
+	initialUserLike: likeType[]
 }) {
 	return (
 		<div className='flex flex-col gap-4 border-b-2 border-slate-200 pb-4 pt-8'>
@@ -109,7 +111,11 @@ function InfoBar({
 
 			<div className='flex justify-between border-t-2 border-slate-200 pt-4 px-12'>
 				<div className='flex items-center'>
-					<LikeButton coinId={coinId} staticLikes={staticLikes} />
+					<LikeButton
+						coinId={coinId}
+						staticLikes={staticLikes}
+						initialUserLike={initialUserLike}
+					/>
 					<div className='ml-4 group relative'>
 						<span className='cursor-pointer text-slate-500'>Explorers</span>
 						<div className='absolute z-50 hidden group-hover:block min-w-full -translate-x-1/4'>

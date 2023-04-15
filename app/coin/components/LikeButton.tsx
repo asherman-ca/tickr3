@@ -11,9 +11,10 @@ import { likeType } from '@/app/utils/types'
 type props = {
 	staticLikes: likeType[]
 	coinId: string
+	initialUserLike: likeType[]
 }
 
-function likeButton({ staticLikes, coinId }: props) {
+function likeButton({ staticLikes, coinId, initialUserLike }: props) {
 	const queryClient = useQueryClient()
 	const { data: session, status: sessionStatus }: any = useSession()
 
@@ -50,7 +51,7 @@ function likeButton({ staticLikes, coinId }: props) {
 				return like.userId === session.user.id
 			})
 		} else {
-			return []
+			return initialUserLike
 		}
 	}, [likes, session])
 

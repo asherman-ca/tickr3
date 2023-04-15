@@ -5,7 +5,7 @@ export const getStaticLikes = async (coinId: string): Promise<likeType[]> => {
 	const res = await fetch(
 		`${process.env.HOST_URL || 'http://localhost:3000'}/api/like/${coinId}`,
 		{
-			next: { revalidate: 600 },
+			next: { revalidate: 0 },
 		}
 	)
 	return await res.json()
