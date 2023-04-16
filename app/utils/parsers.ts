@@ -9,6 +9,8 @@ export const numParse = (num: number): string => {
 
 	if (num < 0.1) {
 		return smlF.format(num)
+	} else if (num > 1000000000000) {
+		return f.format(num / 1000000000000) + 'T'
 	} else if (num > 1000000000) {
 		return f.format(num / 1000000000) + 'B'
 	} else if (num > 1000000) {
@@ -48,6 +50,8 @@ export const moneyParse = (num: number): string => {
 
 		if (num < 0.1) {
 			return num.toLocaleString('en-US', smlOptions)
+		} else if (num > 1000000000000) {
+			return (num / 1000000000000).toLocaleString('en-US', options) + 'T'
 		} else if (num > 1000000000) {
 			return (num / 1000000000).toLocaleString('en-US', options) + 'B'
 		} else if (num > 1000000) {
