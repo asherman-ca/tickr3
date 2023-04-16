@@ -17,6 +17,7 @@ const CoinTableContainer = async ({ coins }: { coins: coinTableType[] }) => {
 			return coin
 		})
 	}
+	console.log('hits')
 	return <CoinTable coins={coins} initialLikes={initialLikes} />
 }
 

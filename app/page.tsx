@@ -8,9 +8,11 @@ export default async function Home() {
 	return (
 		<main className='flex flex-col py-8 gap-4'>
 			<div className='px-12'>Title</div>
-			<div>Trending</div>
-			{/* @ts-ignore */}
-			<CoinTableContainer coins={coins} />
+			<div className='px-12'>Trending</div>
+			<div className='px-12'>
+				{/* @ts-ignore */}
+				<CoinTableContainer coins={coins} />
+			</div>
 		</main>
 	)
 }
