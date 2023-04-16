@@ -88,7 +88,7 @@ function NavInput({ coins }: { coins: coinType[] }) {
 			{focusComplete && (
 				<div
 					id='search-results'
-					className={`-mt-[2px] absolute flex flex-col justify-start border-2 border-gray-200 w-100% w-full transition-all ease-in-out duration-500 border-t-0 bg-white rounded-b-md max-h-80 overflow-auto scrollable`}
+					className={`-mt-[2px] absolute flex flex-col justify-start border-2 border-gray-200 w-100% w-full transition-all ease-in-out duration-500 border-t-0 bg-white rounded-b-md max-h-80 overflow-auto scrollable slide-in`}
 				>
 					{displayCoins.length === 0 && (
 						<>
