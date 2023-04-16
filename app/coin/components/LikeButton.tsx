@@ -54,7 +54,7 @@ function likeButton({ staticLikes, coinId, initialUserLike }: props) {
 		} else {
 			return initialUserLike
 		}
-	}, [likes, session])
+	}, [likes, session, isFetching])
 
 	const handleLike = async (e: React.FormEvent) => {
 		e.preventDefault()

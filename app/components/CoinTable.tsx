@@ -49,10 +49,10 @@ const CoinTable = ({
 	// TODO: remove SSR and useQuery and just fetch raw from a useeffect so it refetches on remount to fix the like bug
 
 	return (
-		<table className='w-full'>
+		<table className='w-full text-base'>
 			<thead>
-				<tr className='text-md'>
-					<th className='text-left'>#</th>
+				<tr>
+					<th className='text-left pb-2'>#</th>
 					<th className='text-left'>Name</th>
 					<th className='text-right'>Price</th>
 					<th className='text-right'>1h%</th>
@@ -65,7 +65,7 @@ const CoinTable = ({
 			<tbody>
 				{displayCoins.map((coin) => {
 					return (
-						<tr key={coin.id}>
+						<tr key={coin.id} className='hover:bg-blue-50'>
 							<td className='text-left py-2'>{coin.market_cap_rank}</td>
 							<td>
 								<Link
