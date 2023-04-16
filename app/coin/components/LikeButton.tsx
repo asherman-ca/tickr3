@@ -22,6 +22,7 @@ function likeButton({ staticLikes, coinId, initialUserLike }: props) {
 		data: likes,
 		error,
 		isLoading,
+		isFetching,
 	} = useQuery({
 		queryFn: () => getCoinLikes(coinId),
 		queryKey: ['coinLikes'],
@@ -46,7 +47,7 @@ function likeButton({ staticLikes, coinId, initialUserLike }: props) {
 	})
 
 	const userLike = useMemo(() => {
-		if (likes && session) {
+		if (likes && session && !isFetching) {
 			return likes.filter((like) => {
 				return like.userId === session.user.id
 			})
@@ -68,8 +69,6 @@ function likeButton({ staticLikes, coinId, initialUserLike }: props) {
 		}
 	}
 
-	console.log('likes', likes)
-
 	return (
 		<div className='pr-4 border-slate-300 border-r-2 flex items-center gap-2'>
 			{!userLike.length ? (
@@ -90,7 +89,7 @@ function likeButton({ staticLikes, coinId, initialUserLike }: props) {
 			)}
 
 			<span className='text-slate-500'>
-				{likes ? likes.length : staticLikes.length}
+				{likes && !isFetching ? likes.length : staticLikes.length}
 			</span>
 		</div>
 	)
