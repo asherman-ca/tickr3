@@ -42,11 +42,12 @@ const CoinTable = ({
 		return parsedCoins
 	}, [parsedCoins, sortParam])
 
-	// if (isFetching) {
-	// 	return <Loader />
-	// }
+	if (isFetching) {
+		return <Loader />
+	}
 
 	// TODO: remove SSR and useQuery and just fetch raw from a useeffect so it refetches on remount to fix the like bug
+	// or try SWR
 
 	return (
 		<table className='w-full text-base'>

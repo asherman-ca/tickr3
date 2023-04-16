@@ -25,12 +25,12 @@ function likeButton({ staticLikes, coinId, initialUserLike }: props) {
 		isFetching,
 	} = useQuery({
 		queryFn: () => getCoinLikes(coinId),
-		queryKey: ['coinLikes'],
+		queryKey: [`coinLikes-${coinId}`],
 	})
 
 	const { mutate: handleAddLike } = useMutation(addLike, {
 		onSuccess: (data) => {
-			queryClient.invalidateQueries(['coinLikes'])
+			queryClient.invalidateQueries([`coinLikes-${coinId}`])
 		},
 		onError: (error) => {
 			console.log('error', error)
@@ -39,7 +39,7 @@ function likeButton({ staticLikes, coinId, initialUserLike }: props) {
 
 	const { mutate: handleRemoveLike } = useMutation(removeLike, {
 		onSuccess: (data) => {
-			queryClient.invalidateQueries(['coinLikes'])
+			queryClient.invalidateQueries([`coinLikes-${coinId}`])
 		},
 		onError: (error) => {
 			console.log('error', error)
@@ -47,14 +47,14 @@ function likeButton({ staticLikes, coinId, initialUserLike }: props) {
 	})
 
 	const userLike = useMemo(() => {
-		if (likes && session && !isFetching) {
+		if (likes && session) {
 			return likes.filter((like) => {
 				return like.userId === session.user.id
 			})
 		} else {
 			return initialUserLike
 		}
-	}, [likes, session, isFetching])
+	}, [likes, session])
 
 	const handleLike = async (e: React.FormEvent) => {
 		e.preventDefault()
@@ -89,7 +89,7 @@ function likeButton({ staticLikes, coinId, initialUserLike }: props) {
 			)}
 
 			<span className='text-slate-500'>
-				{likes && !isFetching ? likes.length : staticLikes.length}
+				{likes ? likes.length : staticLikes.length}
 			</span>
 		</div>
 	)
