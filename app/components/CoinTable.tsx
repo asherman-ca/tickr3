@@ -16,23 +16,25 @@ const CoinTable = ({
 	const [sortParam, setSortParam] = useState<string>('')
 	const { data: session }: any = useSession()
 
-	const { data, error, isLoading } = useQuery({
-		queryFn: () => getUserLikes(session.user.id),
+	const { data, error, isLoading }: any = useQuery({
+		queryFn: () => getUserLikes(session?.user.id),
 		queryKey: ['userLikes'],
 	})
 
-	const displayCoins = useMemo(() => {
-		if (data && !isLoading) {
+	const parsedCoins = useMemo(() => {
+		if (data?.length > 0 && !isLoading) {
 			coins.map((coin) => {
-				coin.liked = data.some((like) => like.coinId === coin.id)
+				coin.liked = data.some((like: likeType) => like.coinId === coin.id)
 				return coin
 			})
 			return coins
 		}
 		return coins
-	}, [sortParam, initialLikes, data])
+	}, [data])
 
-	console.log('coinLikes', data)
+	const displayCoins = useMemo(() => {
+		return parsedCoins
+	}, [parsedCoins, sortParam])
 
 	return (
 		<table className='w-full'>

@@ -30,7 +30,6 @@ function likeButton({ staticLikes, coinId, initialUserLike }: props) {
 	const { mutate: handleAddLike } = useMutation(addLike, {
 		onSuccess: (data) => {
 			queryClient.invalidateQueries(['coinLikes'])
-			// queryClient.invalidateQueries(['userLikes'])
 		},
 		onError: (error) => {
 			console.log('error', error)
@@ -40,7 +39,6 @@ function likeButton({ staticLikes, coinId, initialUserLike }: props) {
 	const { mutate: handleRemoveLike } = useMutation(removeLike, {
 		onSuccess: (data) => {
 			queryClient.invalidateQueries(['coinLikes'])
-			// queryClient.invalidateQueries(['userLikes'])
 		},
 		onError: (error) => {
 			console.log('error', error)
