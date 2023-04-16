@@ -26,7 +26,7 @@ export default async function RootLayout({
 	return (
 		<html lang='en'>
 			<body
-				className={`${inter.className} min-h-screen color-bg text-sm scrollable`}
+				className={`${inter.className} min-h-screen color-bg text-sm scrollable flex flex-col`}
 			>
 				{/* <CoinContextProvider> */}
 				<SessionProvider session={session}>

@@ -3,8 +3,9 @@ import { useState, useMemo } from 'react'
 import { coinTableType, likeType } from '../utils/types'
 import Link from 'next/link'
 import { useSession } from 'next-auth/react'
-import { getStaticLikes, getUserLikes } from '../utils/fetchers'
+import { getUserLikes } from '../utils/fetchers'
 import { useQuery } from '@tanstack/react-query'
+import Loader from './Loader'
 
 const CoinTable = ({
 	coins,
@@ -13,10 +14,13 @@ const CoinTable = ({
 	coins: coinTableType[]
 	initialLikes: likeType[]
 }) => {
-	const [sortParam, setSortParam] = useState<string>('')
+	const [sortParam, setSortParam] = useState<{
+		direction: string
+		type: string
+	}>({ direction: 'desc', type: 'market_cap' })
 	const { data: session }: any = useSession()
 
-	const { data, error, isLoading }: any = useQuery({
+	const { data, error, isLoading, isFetching }: any = useQuery({
 		queryFn: () => getUserLikes(session?.user.id),
 		queryKey: ['userLikes'],
 	})
@@ -28,13 +32,18 @@ const CoinTable = ({
 				return coin
 			})
 			return coins
+		} else {
+			return coins
 		}
-		return coins
 	}, [data])
 
 	const displayCoins = useMemo(() => {
 		return parsedCoins
 	}, [parsedCoins, sortParam])
+
+	if (isFetching) {
+		return <Loader />
+	}
 
 	return (
 		<table className='w-full'>

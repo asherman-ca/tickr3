@@ -68,6 +68,8 @@ function likeButton({ staticLikes, coinId, initialUserLike }: props) {
 		}
 	}
 
+	console.log('likes', likes)
+
 	return (
 		<div className='pr-4 border-slate-300 border-r-2 flex items-center gap-2'>
 			{!userLike.length ? (

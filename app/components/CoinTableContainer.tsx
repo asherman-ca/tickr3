@@ -1,13 +1,8 @@
-import {
-	getStaticGlobal,
-	getStaticCoins,
-	getUserLikes,
-} from '../utils/fetchers'
+import { getUserLikes } from '../utils/fetchers'
 import CoinTable from './CoinTable'
 import { getServerSession } from 'next-auth'
 import { authOptions } from '@/pages/api/auth/[...nextauth]'
-import { coinType, coinTableType } from '../utils/types'
-import { QueryClient } from '@tanstack/react-query'
+import { coinTableType } from '../utils/types'
 
 const CoinTableContainer = async ({ coins }: { coins: coinTableType[] }) => {
 	const session = await getServerSession(authOptions)

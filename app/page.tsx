@@ -6,10 +6,10 @@ export default async function Home() {
 	const coins = await getStaticCoins()
 
 	return (
-		<main className='flex flex-col py-8 gap-4'>
+		<main className='flex flex-col py-8 gap-4 flex-1'>
 			<div className='px-12'>Title</div>
 			<div className='px-12'>Trending</div>
-			<div className='px-12'>
+			<div className='px-12 flex flex-1'>
 				{/* @ts-ignore */}
 				<CoinTableContainer coins={coins} />
 			</div>
