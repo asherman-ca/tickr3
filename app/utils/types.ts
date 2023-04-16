@@ -31,6 +31,12 @@ export type coinType = {
 	price_change_percentage_7d_in_currency: number
 }
 
+type likedType = {
+	liked: boolean
+}
+
+export type coinTableType = coinType & likedType
+
 export type marketType = {
 	base: string
 	target: string

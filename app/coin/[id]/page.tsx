@@ -12,13 +12,9 @@ async function page({ params }: { params: { id: string } }) {
 		.sort((a: any, b: any) => b.converted_volume.usd - a.converted_volume.usd)
 		.slice(0, 5)
 	const session = await getServerSession(authOptions)
-	console.log('session', session)
 	const initalUserLike = session
 		? likes.filter((like) => like.userId === session.user.id)
 		: []
-	// TODO use getserversession here to find initial user like and drill down into client components
-
-	console.log('initalUserLike', initalUserLike)
 
 	return (
 		<div className='srollable'>
