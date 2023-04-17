@@ -39,10 +39,20 @@ export const getStaticGlobal = async (): Promise<globalType> => {
 
 export const getUserLikes = async (userId: string): Promise<likeType[]> => {
 	const res = await axios.get(
-		`${process.env.HOST_URL}/api/like/userLikes/${userId}`
+		`${
+			process.env.HOST_URL || 'http://localhost:3000'
+		}/api/like/userLikes/${userId}`
 	)
 	return res.data
 }
+
+// export const getUserLikes = async (userId: string): Promise<likeType[]> => {
+// 	const res = await fetch(
+// 		`${process.env.HOST_URL}/api/like/userLikes/${userId}`,
+// 		{ method: 'GET' }
+// 	)
+// 	return await res.json()
+// }
 
 export const getCoinLikes = async (coinId: string): Promise<likeType[]> => {
 	const res = await axios.get(
@@ -51,10 +61,26 @@ export const getCoinLikes = async (coinId: string): Promise<likeType[]> => {
 	return res.data
 }
 
+// export const getCoinLikes = async (coinId: string): Promise<likeType[]> => {
+// 	const res = await fetch(`${process.env.HOST_URL}/api/like/${coinId}`, {
+// 		method: 'GET',
+// 	})
+// 	return await res.json()
+// }
+
+// export const addLike = async (coinId: string) => {
+// 	const res = await axios.post(
+// 		`${process.env.HOST_URL || 'http://localhost:3000'}/api/like/addLike`,
+// 		{ coinId }
+// 	)
+// 	return res.data
+// }
 export const addLike = async (coinId: string) => {
 	const res = await axios.post(
 		`${process.env.HOST_URL || 'http://localhost:3000'}/api/like/addLike`,
-		{ coinId }
+		{
+			coinId,
+		}
 	)
 	return res.data
 }
