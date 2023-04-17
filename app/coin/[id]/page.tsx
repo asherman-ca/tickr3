@@ -12,9 +12,10 @@ async function page({ params }: { params: { id: string } }) {
 		.sort((a: any, b: any) => b.converted_volume.usd - a.converted_volume.usd)
 		.slice(0, 5)
 	const session = await getServerSession(authOptions)
-	const initalUserLike = session
-		? likes.filter((like) => like.userId === session.user.id)
-		: []
+	const initalUserLike =
+		session && likes.length > 0
+			? likes?.filter((like) => like.userId === session.user.id)
+			: []
 
 	return (
 		<div className='srollable'>
