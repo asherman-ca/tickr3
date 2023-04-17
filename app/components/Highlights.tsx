@@ -3,13 +3,16 @@
 import { useState } from 'react'
 import { coinType, globalType } from '../utils/types'
 import { moneyParse, numParseTwoDecimal } from '../utils/parsers'
+import HighlightTable from './HighlightTable'
 
 type Props = {
-	coins: coinType[]
+	hourTrends: coinType[]
+	dayTrends: coinType[]
+	weekTrends: coinType[]
 	globals: globalType
 }
 
-const Highlights = ({ coins, globals }: Props) => {
+const Highlights = ({ hourTrends, dayTrends, weekTrends, globals }: Props) => {
 	const [showHighlights, setShowHighlights] = useState(true)
 
 	return (
@@ -49,7 +52,25 @@ const Highlights = ({ coins, globals }: Props) => {
 				</div>
 			</div>
 
-			{showHighlights && <div className='flex px-12'>Highlights</div>}
+			{showHighlights && (
+				<div className='px-12 flex gap-4 slide-in'>
+					<HighlightTable
+						coins={hourTrends}
+						title={'Hourly Trends'}
+						duration={'price_change_percentage_1h_in_currency'}
+					/>
+					<HighlightTable
+						coins={dayTrends}
+						title={'Daily Trends'}
+						duration={'price_change_percentage_24h_in_currency'}
+					/>
+					<HighlightTable
+						coins={weekTrends}
+						title={'Weekly Trends'}
+						duration={'price_change_percentage_7d_in_currency'}
+					/>
+				</div>
+			)}
 		</div>
 	)
 }

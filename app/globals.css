@@ -37,6 +37,10 @@
 	animation: fadeIn .2s ease-in;
 }
 
+.fly-in {
+	animation: flyin .3s ease;
+}
+
 @keyframes fadeIn {
 	0% {
 		opacity: 0;
@@ -45,5 +49,19 @@
 		opacity: 1;
 	}
 }
+
+@keyframes flyin {
+  0% {
+    transform: translatex(100%)
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+
+
+
+
 
 
