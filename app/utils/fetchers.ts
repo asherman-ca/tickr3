@@ -39,9 +39,7 @@ export const getStaticGlobal = async (): Promise<globalType> => {
 
 export const getUserLikes = async (userId: string): Promise<likeType[]> => {
 	const res = await axios.get(
-		`${
-			process.env.HOST_URL || 'http://localhost:3000'
-		}/api/like/userLikes/${userId}`
+		`${process.env.HOST_URL}/api/like/userLikes/${userId}`
 	)
 	return res.data
 }
