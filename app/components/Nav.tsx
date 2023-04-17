@@ -7,6 +7,8 @@ import Login from './Login'
 import Logout from './Logout'
 import { getStaticGlobal, getStaticCoins } from '../utils/fetchers'
 import { numParse, moneyParse, numParseNoDecimal } from '../utils/parsers'
+import { StarIcon } from '@heroicons/react/24/solid'
+import { ChartPieIcon } from '@heroicons/react/24/solid'
 
 async function Nav() {
 	const [data, session, global] = await Promise.all([
@@ -66,7 +68,23 @@ async function Nav() {
 						Leaderboard
 					</Link>
 				</div>
-				<div className='hidden sm:flex basis-2/6 justify-end'>
+				<div className='hidden sm:flex basis-2/6 justify-end items-center gap-4'>
+					<div className='flex'>
+						<Link
+							href={'/profile'}
+							className='text-slate-500 flex items-center gap-1 p-2 rounded-md hover:bg-slate-100'
+						>
+							<StarIcon color={'gray'} height={18} width={18} />
+							watchlist
+						</Link>
+						<Link
+							href={'/testnet'}
+							className='text-slate-500 flex items-center gap-1 p-2 rounded-md hover:bg-slate-100'
+						>
+							<ChartPieIcon color={'gray'} height={18} width={18} />
+							portfolio
+						</Link>
+					</div>
 					<NavInput coins={data} />
 				</div>
 				<div className='sm:hidden flex basis:full justify-end'>Dropdown</div>
