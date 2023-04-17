@@ -7,9 +7,14 @@ import { CalendarDaysIcon } from '@heroicons/react/24/outline'
 
 import { numParseTwoDecimal } from '../utils/parsers'
 
+type durationType =
+	| 'price_change_percentage_1h_in_currency'
+	| 'price_change_percentage_24h_in_currency'
+	| 'price_change_percentage_7d_in_currency'
+
 type Props = {
 	coins: coinType[]
-	duration: string
+	duration: durationType
 	title: string
 }
 
