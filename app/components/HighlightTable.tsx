@@ -1,10 +1,11 @@
 import Image from 'next/image'
+import Link from 'next/link'
 import { useEffect, useState } from 'react'
-import { coinType } from '../utils/types'
 import { ClockIcon } from '@heroicons/react/24/outline'
 import { FireIcon } from '@heroicons/react/24/solid'
 import { CalendarDaysIcon } from '@heroicons/react/24/outline'
 
+import { coinType } from '../utils/types'
 import { numParseTwoDecimal } from '../utils/parsers'
 
 type durationType =
@@ -42,7 +43,8 @@ const HighlightTable = ({ coins, duration, title }: Props) => {
 				<span className='font-semibold text-base'>{title}</span>
 			</div>
 			{coins.slice((page - 1) * 3, page * 3).map((coin, index) => (
-				<div
+				<Link
+					href={`/coin/${coin.id}`}
 					key={`${duration} ${coin.id}`}
 					className='flex justify-between fly-in'
 				>
@@ -59,7 +61,7 @@ const HighlightTable = ({ coins, duration, title }: Props) => {
 					>
 						{numParseTwoDecimal(coin[duration])}%
 					</div>
-				</div>
+				</Link>
 			))}
 			<div className='flex justify-center gap-1'>
 				<div
