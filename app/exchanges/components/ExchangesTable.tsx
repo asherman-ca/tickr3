@@ -7,6 +7,10 @@ type Props = {
 }
 
 const ExchangesTable = ({ exchanges }: Props) => {
+	if (exchanges.length < 1) {
+		return <div>Fetch Error</div>
+	}
+
 	return (
 		<table className='w-full'>
 			<thead>

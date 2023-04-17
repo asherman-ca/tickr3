@@ -155,4 +155,5 @@ export type exchangeType = {
 	trust_score_rank: number
 	trade_volume_24h_btc: number
 	trade_volume_24h_btc_normalized: number
+	error: string
 }

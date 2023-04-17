@@ -93,5 +93,10 @@ export const getStaticExchanges = async (): Promise<exchangeType[]> => {
 			next: { revalidate: 600 },
 		}
 	)
-	return await res.json()
+	const json = await res.json()
+	if (json.error) {
+		return []
+	} else {
+		return json
+	}
 }

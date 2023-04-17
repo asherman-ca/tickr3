@@ -3,12 +3,8 @@ import { exchangeType } from '../utils/types'
 import ExchangesTable from './components/ExchangesTable'
 
 const page = async () => {
-	let exchanges: exchangeType[] = []
-	try {
-		exchanges = await getStaticExchanges()
-	} catch (error) {
-		console.log(error)
-	}
+	let exchanges: exchangeType[] | { error: string } = []
+	let fetched = await getStaticExchanges()
 
 	return (
 		<div className='py-8 flex flex-col gap-8'>
