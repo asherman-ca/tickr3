@@ -30,7 +30,14 @@ function likeButton({ staticLikes, coinId, initialUserLike }: props) {
 
 	const { mutate: handleAddLike } = useMutation(addLike, {
 		onSuccess: (data) => {
-			queryClient.invalidateQueries([`coinLikes-${coinId}`])
+			// queryClient.invalidateQueries([`coinLikes-${coinId}`])
+			queryClient.setQueryData([`coinLikes-${coinId}`], (oldData: any) => {
+				const newLike = {
+					userId: session.user.id,
+					coinId,
+				}
+				return [...oldData, newLike]
+			})
 		},
 		onError: (error) => {
 			console.log('error', error)
@@ -39,7 +46,12 @@ function likeButton({ staticLikes, coinId, initialUserLike }: props) {
 
 	const { mutate: handleRemoveLike } = useMutation(removeLike, {
 		onSuccess: (data) => {
-			queryClient.invalidateQueries([`coinLikes-${coinId}`])
+			// queryClient.invalidateQueries([`coinLikes-${coinId}`])
+			queryClient.setQueryData([`coinLikes-${coinId}`], (oldData: any) => {
+				return oldData.filter((like: any) => {
+					return like.userId !== session.user.id
+				})
+			})
 		},
 		onError: (error) => {
 			console.log('error', error)
