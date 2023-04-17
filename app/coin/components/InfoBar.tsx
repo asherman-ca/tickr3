@@ -119,7 +119,7 @@ function InfoBar({
 					<div className='ml-4 group relative'>
 						<span className='cursor-pointer text-slate-500'>Explorers</span>
 						<div className='absolute z-50 hidden group-hover:block min-w-full -translate-x-1/4'>
-							<div className='flex flex-col mt-2 p-2 bg-white shadow-md rounded-md gap-1'>
+							<div className='flex flex-col mt-2 p-3 bg-white shadow-md rounded-md gap-1'>
 								{!coin.links.blockchain_site && (
 									<div className='p-1'>No Entries</div>
 								)}
@@ -131,7 +131,7 @@ function InfoBar({
 												target='_blank'
 												rel='noopener noreferrer'
 												href={site}
-												className='p-1 rounded-md hover:bg-blue-100 font-medium'
+												className='px-2 py-1 rounded-md hover:bg-blue-100 font-medium'
 												key={site}
 											>
 												{site.split('//')[1]?.split('/')[0]}
