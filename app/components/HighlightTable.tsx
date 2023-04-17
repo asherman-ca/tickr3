@@ -61,6 +61,26 @@ const HighlightTable = ({ coins, duration, title }: Props) => {
 					</div>
 				</div>
 			))}
+			<div className='flex justify-center gap-1'>
+				<div
+					onClick={() => setPage(1)}
+					className={`cursor-pointer w-2 h-2 rounded-full ${
+						page === 1 ? 'bg-blue-500' : 'bg-slate-200'
+					}`}
+				/>
+				<div
+					onClick={() => setPage(2)}
+					className={`cursor-pointer w-2 h-2 rounded-full ${
+						page === 2 ? 'bg-blue-500' : 'bg-slate-200'
+					}`}
+				/>
+				<div
+					onClick={() => setPage(3)}
+					className={`cursor-pointer w-2 h-2 rounded-full ${
+						page === 3 ? 'bg-blue-500' : 'bg-slate-200'
+					}`}
+				/>
+			</div>
 		</div>
 	)
 }
