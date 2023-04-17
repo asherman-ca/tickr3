@@ -1,5 +1,4 @@
 import { getStaticGlobal, getStaticCoins } from './utils/fetchers'
-import { numParseTwoDecimal, moneyParse } from './utils/parsers'
 import CoinTableContainer from './components/CoinTableContainer'
 import Highlights from './components/Highlights'
 
@@ -29,7 +28,7 @@ export default async function Home() {
 		.slice(0, 9)
 
 	return (
-		<main className='flex flex-col py-8 gap-6 flex-1'>
+		<main className='flex flex-col py-8 gap-8 flex-1'>
 			<Highlights
 				hourTrends={hourTrends}
 				dayTrends={dayTrends}

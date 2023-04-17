@@ -41,13 +41,18 @@ const Highlights = ({ hourTrends, dayTrends, weekTrends, globals }: Props) => {
 						change over 24 hours.
 					</div>
 				</div>
-				<div>
+				<div className='flex items-center gap-2'>
 					Highlights
 					<button
-						className='relative'
+						className='w-12 h-6 bg-blue-400 text-white rounded-full relative'
 						onClick={() => setShowHighlights((prev) => (prev ? false : true))}
 					>
-						Button
+						<div
+							className={`absolute h-5 w-5 bg-white top-[2px] right-[2px] rounded-full ${
+								!showHighlights && '-translate-x-6'
+							} transition-all duration-300 ease-in-out`}
+						/>
+						{/* Button */}
 					</button>
 				</div>
 			</div>
