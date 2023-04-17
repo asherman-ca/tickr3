@@ -3,7 +3,8 @@ import { coinType } from '../utils/types'
 import { useState, useMemo, useEffect, useRef } from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
-import { MagnifyingGlassIcon, FireIcon } from '@heroicons/react/24/outline'
+import { MagnifyingGlassIcon } from '@heroicons/react/24/outline'
+import { FireIcon } from '@heroicons/react/24/solid'
 import Image from 'next/image'
 
 function NavInput({ coins }: { coins: coinType[] }) {
@@ -59,7 +60,7 @@ function NavInput({ coins }: { coins: coinType[] }) {
 		<div
 			className={`relative ${!focusIn && 'min-w-0'} ${
 				focusIn && 'min-w-full'
-			} transition-all ease-in-out duration-500`}
+			} transition-all ease-in-out duration-500 z-50`}
 		>
 			<div
 				className={`flex border-2 border-gray-200 rounded-md items-center px-2 py-1 ${
@@ -92,7 +93,7 @@ function NavInput({ coins }: { coins: coinType[] }) {
 				>
 					{displayCoins.length === 0 && (
 						<>
-							<div className='text-left px-2 py-2 flex items-center gap-1'>
+							<div className='text-left px-2 py-2 flex items-center gap-1 text-slate-500'>
 								Trending <FireIcon height={24} width={24} color='red' />
 							</div>
 							{trendingCoins.map((coin) => {

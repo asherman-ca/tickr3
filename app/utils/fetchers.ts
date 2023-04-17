@@ -47,16 +47,24 @@ export const getUserLikes = async (userId: string): Promise<likeType[]> => {
 }
 
 export const getCoinLikes = async (coinId: string): Promise<likeType[]> => {
-	const res = await axios.get(`/api/like/${coinId}`)
+	const res = await axios.get(
+		`${process.env.HOST_URL || 'http://localhost:3000'}/api/like/${coinId}`
+	)
 	return res.data
 }
 
 export const addLike = async (coinId: string) => {
-	const res = await axios.post('/api/like/addLike', { coinId })
+	const res = await axios.post(
+		`${process.env.HOST_URL || 'http://localhost:3000'}/api/like/addLike`,
+		{ coinId }
+	)
 	return res.data
 }
 
 export const removeLike = async (coinId: string) => {
-	const res = await axios.post('/api/like/removeLike', { coinId })
+	const res = await axios.post(
+		`${process.env.HOST_URL || 'http://localhost:3000'}/api/like/removeLike`,
+		{ coinId }
+	)
 	return res.data
 }
