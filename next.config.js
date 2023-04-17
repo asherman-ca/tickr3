@@ -10,6 +10,9 @@ const nextConfig = {
 	eslint: {
 		ignoreDuringBuilds: true,
 	},
+	publicRuntimeConfig: {
+		HOST_URL: process.env.HOST_URL,
+	},
 }
 
 module.exports = nextConfig
