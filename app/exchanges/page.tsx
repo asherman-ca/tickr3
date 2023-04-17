@@ -1,10 +1,8 @@
 import { getStaticExchanges } from '../utils/fetchers'
-import { exchangeType } from '../utils/types'
 import ExchangesTable from './components/ExchangesTable'
 
 const page = async () => {
-	let exchanges: exchangeType[] | { error: string } = []
-	let fetched = await getStaticExchanges()
+	const exchanges = await getStaticExchanges()
 
 	return (
 		<div className='py-8 flex flex-col gap-8'>
