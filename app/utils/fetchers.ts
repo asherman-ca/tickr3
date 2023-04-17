@@ -1,4 +1,4 @@
-import { coinView, likeType, globalType, coinType } from './types'
+import { coinView, likeType, globalType, coinType, exchangeType } from './types'
 import axios from 'axios'
 
 export const getStaticLikes = async (coinId: string): Promise<likeType[]> => {
@@ -51,14 +51,6 @@ export const getUserLikes = async (userId: string): Promise<likeType[]> => {
 	return res.data
 }
 
-// export const getUserLikes = async (userId: string): Promise<likeType[]> => {
-// 	const res = await fetch(
-// 		`${process.env.HOST_URL}/api/like/userLikes/${userId}`,
-// 		{ method: 'GET' }
-// 	)
-// 	return await res.json()
-// }
-
 export const getCoinLikes = async (coinId: string): Promise<likeType[]> => {
 	const res = await axios.get(
 		`${
@@ -68,20 +60,6 @@ export const getCoinLikes = async (coinId: string): Promise<likeType[]> => {
 	return res.data
 }
 
-// export const getCoinLikes = async (coinId: string): Promise<likeType[]> => {
-// 	const res = await fetch(`${process.env.HOST_URL}/api/like/${coinId}`, {
-// 		method: 'GET',
-// 	})
-// 	return await res.json()
-// }
-
-// export const addLike = async (coinId: string) => {
-// 	const res = await axios.post(
-// 		`${process.env.HOST_URL || 'http://localhost:3000'}/api/like/addLike`,
-// 		{ coinId }
-// 	)
-// 	return res.data
-// }
 export const addLike = async (coinId: string) => {
 	const res = await axios.post(
 		`${
@@ -104,4 +82,16 @@ export const removeLike = async (coinId: string) => {
 		}
 	)
 	return res.data
+}
+
+// Exchange API
+
+export const getStaticExchanges = async (): Promise<exchangeType[]> => {
+	const res = await fetch(
+		`https://api.coingecko.com/api/v3/exchanges?per_page=40`,
+		{
+			next: { revalidate: 600 },
+		}
+	)
+	return await res.json()
 }
