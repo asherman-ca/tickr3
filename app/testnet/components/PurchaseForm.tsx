@@ -1,19 +1,40 @@
 import { useState } from 'react'
 import { coinType } from '@/app/utils/types'
+import CoinForm from './CoinForm'
 
-const PurchaseForm = ({ coins }: { coins: coinType[] }) => {
+const PurchaseForm = ({
+	coins,
+	modalActive,
+	setModalActive,
+}: {
+	coins: coinType[]
+	modalActive: boolean
+	setModalActive: (value: boolean) => void
+}) => {
 	const [actionType, setActionType] = useState<'Buy' | 'Sell'>('Buy')
-	const [modalActive, setModalActive] = useState(true)
+	const [formData, setFormData] = useState<{
+		coinId: string
+		coin: string
+		amount: number
+	}>({
+		coinId: 'bitcoin',
+		coin: 'Bitcoin',
+		amount: 0,
+	})
 
 	return (
-		<div className='hidden md:flex gap-6 flex-col basis-2/6 bg-white shadow-sm border border-gray-200 rounded-md'>
+		<div className='hidden md:flex gap-6 flex-col basis-2/6 bg-white shadow-sm border border-gray-200 rounded-md relative'>
 			{modalActive && (
-				<div
-					className='absolute top-0 left-0 w-screen h-screen z-100 bg-black opacity-50'
-					onClick={() => setModalActive(false)}
-				>
-					Modal
-				</div>
+				<CoinForm
+					coins={coins}
+					setModalActive={setModalActive}
+					setFormData={setFormData}
+					formData={formData}
+				/>
+				// <div className='bg-white p-4 z-[101] absolute top-[10%] left-[10%] h-4/5 w-4/5 rounded-md'>
+				// 	<input type='text' onChange={(e) => setCoinSearch(e.target.value)} />
+				// 	{coinSearch}
+				// </div>
 			)}
 			<div className='flex'>
 				<div
@@ -47,7 +68,7 @@ const PurchaseForm = ({ coins }: { coins: coinType[] }) => {
 					/>
 				</div>
 				<input type='number' placeholder='price' />
-				<div onClick={() => setModalActive(true)}>Buy</div>
+				<div onClick={() => setModalActive(true)}>{formData.coin}</div>
 				<div className='flex gap-6'>
 					<button className='text-base font-semibold bg-gray-200 p-4 rounded-full basis-full'>
 						$100

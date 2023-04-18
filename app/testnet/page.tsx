@@ -7,6 +7,7 @@ import Login from '../components/Login'
 async function page() {
 	const coins = await getStaticCoins()
 	const session = await getServerSession(authOptions)
+	coins.sort((a, b) => a.market_cap_rank - b.market_cap_rank)
 
 	if (!session) {
 		return (
