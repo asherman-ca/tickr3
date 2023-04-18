@@ -60,10 +60,10 @@ function NavInput({ coins }: { coins: coinType[] }) {
 		<div
 			className={`relative ${!focusIn && 'min-w-0'} ${
 				focusIn && 'min-w-full'
-			} transition-all ease-in-out duration-500 z-50`}
+			} transition-all ease-in-out duration-500`}
 		>
 			<div
-				className={`flex border-2 border-gray-200 rounded-md items-center px-2 py-1 ${
+				className={`flex border-2 border-gray-200 rounded-md items-center px-2 py-1 z-50 ${
 					focusComplete && 'rounded-b-none'
 				}`}
 			>

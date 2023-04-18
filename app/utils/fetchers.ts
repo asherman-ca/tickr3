@@ -28,7 +28,12 @@ export const getStaticCoins = async (): Promise<coinType[]> => {
 			next: { revalidate: 600 },
 		}
 	)
-	return await res.json()
+	const json = await res.json()
+	if (json.error) {
+		return []
+	} else {
+		return json
+	}
 }
 
 export const getStaticGlobal = async (): Promise<globalType> => {
@@ -40,9 +45,6 @@ export const getStaticGlobal = async (): Promise<globalType> => {
 }
 
 export const getUserLikes = async (userId: string): Promise<likeType[]> => {
-	const hosturl = process.env.NEXT_PUBLIC_HOST_URL
-	console.log(hosturl, 'hosturl')
-
 	const res = await axios.get(
 		`${
 			process.env.NEXT_PUBLIC_HOST_URL || 'http://localhost:3000'

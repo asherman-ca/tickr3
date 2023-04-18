@@ -26,9 +26,8 @@ export default async function RootLayout({
 	return (
 		<html lang='en'>
 			<body
-				className={`${inter.className} min-h-screen color-bg text-sm scrollable flex flex-col`}
+				className={`${inter.className} min-h-screen color-bg text-sm scrollable flex flex-col relative`}
 			>
-				{/* <CoinContextProvider> */}
 				<SessionProvider session={session}>
 					<QueryWrapper>
 						<Suspense fallback={<Loading />}>
@@ -38,7 +37,6 @@ export default async function RootLayout({
 						</Suspense>
 					</QueryWrapper>
 				</SessionProvider>
-				{/* </CoinContextProvider> */}
 			</body>
 		</html>
 	)

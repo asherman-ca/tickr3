@@ -4,6 +4,8 @@ import InfoBar from '../components/InfoBar'
 import TickrBar from '../components/TickrBar'
 import { authOptions } from '@/pages/api/auth/[...nextauth]'
 
+// TODO: add generatestaticparams for ISR: https://www.youtube.com/watch?v=UgseormfMc4
+
 async function page({ params }: { params: { id: string } }) {
 	const coin = await getStaticCoin(params.id)
 	const likes = await getStaticLikes(params.id)
