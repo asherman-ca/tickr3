@@ -25,10 +25,30 @@ const CoinForm = ({ coins, setModalActive, setFormData, formData }: Props) => {
 		})
 	}, [coinSearch])
 
-	const handleClick = (coinName: string, coinId: string) => {
+	const handleClick = (
+		coinName: string,
+		coinId: string,
+		image: string,
+		symbol: string,
+		price: number
+	) => {
 		setFormData(
-			(formData: { amount: number; coin: string; coinId: string }) => {
-				return { ...formData, coin: coinName, coinId: coinId }
+			(formData: {
+				amount: number
+				coin: string
+				coinId: string
+				image: string
+				symbol: string
+				price: number
+			}) => {
+				return {
+					...formData,
+					coin: coinName,
+					coinId: coinId,
+					image: image,
+					symbol: symbol,
+					price: price,
+				}
 			}
 		)
 		setModalActive(false)
@@ -62,7 +82,15 @@ const CoinForm = ({ coins, setModalActive, setFormData, formData }: Props) => {
 					return (
 						<div
 							key={coin.id}
-							onClick={() => handleClick(coin.name, coin.id)}
+							onClick={() =>
+								handleClick(
+									coin.name,
+									coin.id,
+									coin.image,
+									coin.symbol,
+									coin.current_price
+								)
+							}
 							className='hover:bg-blue-100 p-4 rounded-md cursor-pointer flex justify-between items-center'
 						>
 							<div className='flex items-center gap-4'>
