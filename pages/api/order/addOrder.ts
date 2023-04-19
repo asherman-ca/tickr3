@@ -22,6 +22,7 @@ export default async function handler(
 					price: req.body.price,
 					type: req.body.type,
 					symbol: req.body.symbol,
+					coin: req.body.coin,
 				},
 			})
 			res.status(200).json(data)

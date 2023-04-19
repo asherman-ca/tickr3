@@ -70,6 +70,7 @@ model Order {
   id     String @id @default(cuid())
   coinId String
   userId String
+  coin   String
   image  String
   amount Float
   price  Float

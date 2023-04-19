@@ -1,5 +1,7 @@
 import { getOrders } from '@/app/utils/fetchers'
-import { useQuery, useQueryClient } from '@tanstack/react-query'
+import { useQuery } from '@tanstack/react-query'
+import Image from 'next/image'
+import { moneyParse } from '@/app/utils/parsers'
 
 const OrderList = () => {
 	const {
@@ -21,24 +23,36 @@ const OrderList = () => {
 			<div className='text-xl font-semibold px-4'>Orders</div>
 			<table>
 				<thead>
-					<tr>
-						<th className='px-4 py-2'>Time Placed</th>
-						<th className='px-4 py-2'>Type</th>
-						<th className='px-4 py-2'>Coin</th>
-						<th className='px-4 py-2'>Amount</th>
-						<th className='px-4 py-2'>Price</th>
+					<tr className='border-b border-gray-200'>
+						<th className='py-4 pl-4 text-left'>Time Placed</th>
+						<th className='text-left'>Type</th>
+						<th className='text-right'>Coin</th>
+						<th className='text-right'>$Value</th>
+						<th className='pr-4 text-right'>Price</th>
 					</tr>
 				</thead>
 				<tbody>
 					{orders &&
 						orders.map((order: any) => {
+							const date = new Date(order.createdAt)
+							const formattedDate = `${date.toLocaleDateString()} ${date.toLocaleTimeString()}`
 							return (
-								<tr key={order.id}>
-									<td className='px-4 py-2'>{order.createdAt}</td>
-									<td className='px-4 py-2'>{order.type}</td>
-									<td className='px-4 py-2'>{order.coinId}</td>
-									<td className='px-4 py-2'>{order.amount}</td>
-									<td className='px-4 py-2'>{order.price}</td>
+								<tr key={order.id} className='border-b border-gray-200'>
+									<td className='py-4 pl-4 text-left'>{formattedDate}</td>
+									<td className='text-left'>{order.type}</td>
+									<td>
+										<div className='flex items-center justify-end gap-2'>
+											<div>{order.coin}</div>
+											<Image
+												src={order.image}
+												height={24}
+												width={24}
+												alt={order.coinId}
+											/>
+										</div>
+									</td>
+									<td className='text-right'>{moneyParse(order.amount)}</td>
+									<td className='pr-4 text-right'>{moneyParse(order.price)}</td>
 								</tr>
 							)
 						})}
