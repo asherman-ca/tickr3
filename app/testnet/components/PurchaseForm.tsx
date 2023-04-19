@@ -56,7 +56,7 @@ const PurchaseForm = ({
 	}
 
 	return (
-		<div className='hidden md:flex gap-6 flex-col basis-2/6 bg-white shadow-sm border border-gray-200 rounded-md relative text-base'>
+		<div className='hidden md:flex gap-6 flex-col basis-1/6 bg-white shadow-sm border border-gray-200 rounded-md relative text-base h-fit'>
 			{modalActive && (
 				<CoinForm
 					coins={coins}

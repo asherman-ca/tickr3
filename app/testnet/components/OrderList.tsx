@@ -17,7 +17,7 @@ const OrderList = () => {
 	}
 
 	return (
-		<div className='basis-4/6 bg-white shadow-sm border border-gray-200 rounded-md p-4'>
+		<div className='basis-5/6 bg-white shadow-sm border border-gray-200 rounded-md p-4'>
 			{orders &&
 				orders.map((order: any) => {
 					return <div key={order.id}>{order.type}</div>

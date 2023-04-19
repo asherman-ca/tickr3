@@ -13,7 +13,7 @@ const Testnet = ({ coins, session }: Props) => {
 	const [modalActive, setModalActive] = useState(false)
 
 	return (
-		<div className='py-8 flex flex-col md:flex-row px-12 gap-4'>
+		<div className='py-8 flex flex-col md:flex-row px-12 gap-4 flex-1'>
 			{modalActive && (
 				<div
 					className='absolute top-0 left-0 w-screen h-screen z-[75] bg-black opacity-50'
