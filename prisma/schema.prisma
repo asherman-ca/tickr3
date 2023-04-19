@@ -70,8 +70,11 @@ model Order {
   id     String @id @default(cuid())
   coinId String
   userId String
-  value  Float
+  image  String
+  amount Float
   price  Float
+  type   String
+  symbol String
   createdAt DateTime @default(now())
   user   User   @relation(fields: [userId], references: [id])
 }

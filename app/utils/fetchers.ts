@@ -102,3 +102,17 @@ export const getStaticExchanges = async (): Promise<exchangeType[]> => {
 		return json
 	}
 }
+
+// Order API
+
+export const addOrder = async (orderData: any) => {
+	const res = await axios.post(
+		`${
+			process.env.NEXT_PUBLIC_HOST_URL || 'http://localhost:3000'
+		}/api/order/addOrder`,
+		{
+			...orderData,
+		}
+	)
+	return res.data
+}

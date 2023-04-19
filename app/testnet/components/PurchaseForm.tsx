@@ -1,10 +1,12 @@
 import { useState } from 'react'
 import Image from 'next/image'
 import { ChevronRightIcon, BanknotesIcon } from '@heroicons/react/24/solid'
+import { useMutation, useQueryClient } from '@tanstack/react-query'
 
 import { moneyParse } from '@/app/utils/parsers'
 import CoinForm from './CoinForm'
 import { coinType } from '@/app/utils/types'
+import { addOrder } from '@/app/utils/fetchers'
 
 const PurchaseForm = ({
 	coins,
@@ -23,6 +25,7 @@ const PurchaseForm = ({
 		amount: number
 		price: number
 		symbol: string
+		type: 'Buy' | 'Sell'
 	}>({
 		coinId: coins[0].id,
 		coin: coins[0].name,
@@ -30,9 +33,25 @@ const PurchaseForm = ({
 		amount: 0,
 		price: coins[0].current_price,
 		symbol: coins[0].symbol,
+		type: 'Buy',
 	})
 
-	console.log(formData, 'formData')
+	const queryClient = useQueryClient()
+
+	const { mutate: handleAddOrder } = useMutation(addOrder, {
+		onSuccess: (data) => {
+			queryClient.invalidateQueries([`orders`])
+		},
+		onError: (error) => {
+			console.log('error', error)
+		},
+	})
+
+	const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+		e.preventDefault()
+		console.log(formData, 'formData')
+		handleAddOrder({ ...formData, type: actionType })
+	}
 
 	return (
 		<div className='hidden md:flex gap-6 flex-col basis-2/6 bg-white shadow-sm border border-gray-200 rounded-md relative text-base'>
@@ -66,7 +85,11 @@ const PurchaseForm = ({
 					Sell
 				</div>
 			</div>
-			<form action='' className='flex flex-col gap-4 px-6'>
+			<form
+				action=''
+				className='flex flex-col gap-4 px-6'
+				onSubmit={(e) => handleSubmit(e)}
+			>
 				<div className='flex gap-2 text-base font-semibold'>
 					$
 					<input
@@ -129,6 +152,7 @@ const PurchaseForm = ({
 				<button
 					type='submit'
 					className='text-base font-semibold bg-blue-500 p-4 rounded-full text-white'
+					onClick={(e) => handleSubmit(e)}
 				>
 					{actionType}
 				</button>
