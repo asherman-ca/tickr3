@@ -125,3 +125,14 @@ export const getOrders = async (): Promise<any[]> => {
 	)
 	return res.data
 }
+
+// User API
+
+export const getUser = async (): Promise<any> => {
+	const res = await axios.get(
+		`${
+			process.env.NEXT_PUBLIC_HOST_URL || 'http://localhost:3000'
+		}/api/user/getUser`
+	)
+	return res.data
+}

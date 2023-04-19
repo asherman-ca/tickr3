@@ -3,6 +3,9 @@ import { coinType } from '@/app/utils/types'
 import PurchaseForm from './PurchaseForm'
 import { useState } from 'react'
 import OrderList from './OrderList'
+import { useQuery } from '@tanstack/react-query'
+import { getUser } from '@/app/utils/fetchers'
+import Loader from '@/app/components/Loader'
 
 type Props = {
 	coins: coinType[]
@@ -11,6 +14,17 @@ type Props = {
 
 const Testnet = ({ coins, session }: Props) => {
 	const [modalActive, setModalActive] = useState(false)
+	const {
+		data: user,
+		error,
+		isLoading,
+		isFetching,
+	} = useQuery({
+		queryFn: () => getUser(),
+		queryKey: [`user`],
+	})
+
+	if (isLoading) return <Loader />
 
 	return (
 		<div className='py-8 flex flex-col md:flex-row px-12 gap-4 flex-1'>
@@ -20,11 +34,12 @@ const Testnet = ({ coins, session }: Props) => {
 					onClick={() => setModalActive(false)}
 				></div>
 			)}
-			<OrderList />
+			<OrderList orders={user?.orders || []} />
 			<PurchaseForm
 				coins={coins}
 				modalActive={modalActive}
 				setModalActive={setModalActive}
+				balance={user?.balance || 0}
 			/>
 		</div>
 	)

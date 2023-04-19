@@ -3,16 +3,16 @@ import { useQuery } from '@tanstack/react-query'
 import Image from 'next/image'
 import { moneyParse } from '@/app/utils/parsers'
 
-const OrderList = () => {
-	const {
-		data: orders,
-		error,
-		isLoading,
-		isFetching,
-	} = useQuery({
-		queryFn: () => getOrders(),
-		queryKey: [`orders`],
-	})
+const OrderList = ({ orders }: any) => {
+	// const {
+	// 	data: orders,
+	// 	error,
+	// 	isLoading,
+	// 	isFetching,
+	// } = useQuery({
+	// 	queryFn: () => getOrders(),
+	// 	queryKey: [`orders`],
+	// })
 
 	{
 		console.log(orders, 'orders')

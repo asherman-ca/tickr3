@@ -16,6 +16,7 @@ model User {
   email         String?   @unique
   emailVerified DateTime?
   image         String?
+  balance       Float     @default(100000)
   accounts      Account[]
   sessions      Session[]
   likes         Like[]

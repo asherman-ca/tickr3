@@ -12,10 +12,12 @@ const PurchaseForm = ({
 	coins,
 	modalActive,
 	setModalActive,
+	balance,
 }: {
 	coins: coinType[]
 	modalActive: boolean
 	setModalActive: (value: boolean) => void
+	balance: number
 }) => {
 	const [actionType, setActionType] = useState<'Buy' | 'Sell'>('Buy')
 	const [formData, setFormData] = useState<{
@@ -40,7 +42,7 @@ const PurchaseForm = ({
 
 	const { mutate: handleAddOrder } = useMutation(addOrder, {
 		onSuccess: (data) => {
-			queryClient.invalidateQueries([`orders`])
+			queryClient.invalidateQueries(['user'])
 		},
 		onError: (error) => {
 			console.log('error', error)
@@ -162,7 +164,7 @@ const PurchaseForm = ({
 
 			<div className='flex justify-between px-6 pb-6'>
 				<div className='text-slate-500'>USD Balance</div>
-				<div>$1,230,2497</div>
+				<div>{moneyParse(balance)}</div>
 			</div>
 		</div>
 	)
