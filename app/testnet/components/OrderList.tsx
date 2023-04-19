@@ -28,7 +28,7 @@ const OrderList = () => {
 						<th className='text-left'>Type</th>
 						<th className='text-right'>Coin</th>
 						<th className='text-right'>$Value</th>
-						<th className='pr-4 text-right'>Price</th>
+						<th className='pr-4 text-right'>Price/Coin</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -39,7 +39,13 @@ const OrderList = () => {
 							return (
 								<tr key={order.id} className='border-b border-gray-200'>
 									<td className='py-4 pl-4 text-left'>{formattedDate}</td>
-									<td className='text-left'>{order.type}</td>
+									<td
+										className={`text-left ${
+											order.type === 'Buy' ? 'text-green-500' : 'text-red-500'
+										}`}
+									>
+										{order.type}
+									</td>
 									<td>
 										<div className='flex items-center justify-end gap-2'>
 											<div>{order.coin}</div>
