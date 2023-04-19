@@ -116,3 +116,12 @@ export const addOrder = async (orderData: any) => {
 	)
 	return res.data
 }
+
+export const getOrders = async (): Promise<any[]> => {
+	const res = await axios.get(
+		`${
+			process.env.NEXT_PUBLIC_HOST_URL || 'http://localhost:3000'
+		}/api/order/getOrders`
+	)
+	return res.data
+}

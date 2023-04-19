@@ -2,6 +2,7 @@
 import { coinType } from '@/app/utils/types'
 import PurchaseForm from './PurchaseForm'
 import { useState } from 'react'
+import OrderList from './OrderList'
 
 type Props = {
 	coins: coinType[]
@@ -19,9 +20,7 @@ const Testnet = ({ coins, session }: Props) => {
 					onClick={() => setModalActive(false)}
 				></div>
 			)}
-			<div className='basis-4/6 bg-white shadow-sm border border-gray-200 rounded-md p-4'>
-				List
-			</div>
+			<OrderList />
 			<PurchaseForm
 				coins={coins}
 				modalActive={modalActive}

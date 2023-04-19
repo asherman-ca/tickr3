@@ -47,7 +47,9 @@ const PurchaseForm = ({
 		},
 	})
 
-	const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+	const handleSubmit = (
+		e: React.FormEvent<HTMLFormElement> | React.MouseEvent
+	) => {
 		e.preventDefault()
 		console.log(formData, 'formData')
 		handleAddOrder({ ...formData, type: actionType })
