@@ -10,7 +10,10 @@ export const getStaticLikes = async (coinId: string): Promise<likeType[]> => {
 			next: { revalidate: 0 },
 		}
 	)
-	return await res.json()
+
+	const json = await res.json()
+
+	return json
 }
 
 export const getStaticCoin = async (coinId: string): Promise<coinView> => {
@@ -41,7 +44,9 @@ export const getStaticGlobal = async (): Promise<globalType> => {
 		next: { revalidate: 600 },
 	})
 
-	return await res.json()
+	const json = await res.json()
+
+	return json
 }
 
 export const getUserLikes = async (userId: string): Promise<likeType[]> => {
