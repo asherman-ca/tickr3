@@ -67,6 +67,9 @@
   }
 }
 
+.profile-button:hover svg {
+	color: black;
+}
 
 
 
