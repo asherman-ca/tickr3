@@ -10,6 +10,7 @@ export default async function handler(
 ) {
 	if (req.method === 'GET') {
 		const userId: string = req.query.slug as string
+		console.log('userId', userId)
 
 		try {
 			const prismaUser = await prisma.user.findUnique({
@@ -25,7 +26,11 @@ export default async function handler(
 			})
 			res.status(200).json(prismaUser)
 		} catch (err) {
-			res.status(403).json({ err: 'Error has occured whilst fetching user' })
+			res
+				.status(403)
+				.json({
+					err: `Error has occured whilst fetching user. userId: ${userId}`,
+				})
 		}
 	}
 }
