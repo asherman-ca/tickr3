@@ -61,6 +61,8 @@ model VerificationToken {
 model Like {
   id     String @id @default(cuid())
   coinId String
+  coin   String
+  image  String
   userId String
   user   User   @relation(fields: [userId], references: [id])
 

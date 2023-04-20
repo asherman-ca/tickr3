@@ -113,6 +113,8 @@ function InfoBar({
 				<div className='flex items-center'>
 					<LikeButton
 						coinId={coinId}
+						coin={coin.name}
+						image={coin.image.small}
 						staticLikes={staticLikes}
 						initialUserLike={initialUserLike}
 					/>

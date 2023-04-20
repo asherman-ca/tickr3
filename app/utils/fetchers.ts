@@ -67,13 +67,14 @@ export const getCoinLikes = async (coinId: string): Promise<likeType[]> => {
 	return res.data
 }
 
-export const addLike = async (coinId: string) => {
+export const addLike = async (likeData: any) => {
+	console.log('likeData', likeData)
 	const res = await axios.post(
 		`${
 			process.env.NEXT_PUBLIC_HOST_URL || 'http://localhost:3000'
 		}/api/like/addLike`,
 		{
-			coinId,
+			...likeData,
 		}
 	)
 	return res.data
@@ -140,4 +141,20 @@ export const getUser = async (): Promise<any> => {
 		}/api/user/getUser`
 	)
 	return res.data
+}
+
+export const getUserProfile = async (userId: string): Promise<any> => {
+	// const res = await axios.get(
+	// 	`${
+	// 		process.env.NEXT_PUBLIC_HOST_URL || 'http://localhost:3000'
+	// 	}/api/user/getUserProfile`
+	// )
+	// return res.data
+	const res = await fetch(
+		`${process.env.NEXT_PUBLIC_HOST_URL}/api/user/${userId}`
+	)
+
+	const json = await res.json()
+
+	return json
 }

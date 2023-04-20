@@ -12,9 +12,17 @@ type props = {
 	staticLikes: likeType[]
 	coinId: string
 	initialUserLike: likeType[]
+	coin: string
+	image: string
 }
 
-function likeButton({ staticLikes, coinId, initialUserLike }: props) {
+function likeButton({
+	staticLikes,
+	coinId,
+	initialUserLike,
+	coin,
+	image,
+}: props) {
 	const queryClient = useQueryClient()
 	const { data: session, status: sessionStatus }: any = useSession()
 
@@ -35,6 +43,8 @@ function likeButton({ staticLikes, coinId, initialUserLike }: props) {
 				const newLike = {
 					userId: session.user.id,
 					coinId,
+					coin,
+					image,
 				}
 				return [...oldData, newLike]
 			})
@@ -75,7 +85,7 @@ function likeButton({ staticLikes, coinId, initialUserLike }: props) {
 		}
 
 		if (!userLike.length) {
-			handleAddLike(coinId)
+			handleAddLike({ coinId, coin, image })
 		} else {
 			handleRemoveLike(coinId)
 		}
