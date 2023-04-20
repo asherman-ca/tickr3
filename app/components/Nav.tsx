@@ -75,14 +75,14 @@ async function Nav() {
 							className='text-slate-500 flex items-center gap-1 p-2 rounded-md hover:bg-slate-100'
 						>
 							<StarIcon color={'gray'} height={18} width={18} />
-							watchlist
+							Profile
 						</Link>
 						<Link
 							href={'/testnet'}
 							className='text-slate-500 flex items-center gap-1 p-2 rounded-md hover:bg-slate-100'
 						>
 							<ChartPieIcon color={'gray'} height={18} width={18} />
-							portfolio
+							Exchange
 						</Link>
 					</div>
 					<NavInput coins={data} />
