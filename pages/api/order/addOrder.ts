@@ -13,6 +13,16 @@ export default async function handler(
 	console.log('req.body', req.body)
 	if (req.method === 'POST') {
 		try {
+			// find user
+			const user = await prisma.user.findUnique({
+				where: { id: session.user.id },
+			})
+
+			if (req.body.amount > user!.balance) {
+				res.status(400).json({ error: 'Insufficient balance.' })
+				return
+			}
+
 			const data = await prisma.order.create({
 				data: {
 					coinId: req.body.coinId,
@@ -25,11 +35,8 @@ export default async function handler(
 					coin: req.body.coin,
 				},
 			})
-			// find user
-			const user = await prisma.user.findUnique({
-				where: { id: session.user.id },
-			})
-			if (req.body.type === 'buy') {
+
+			if (req.body.type === 'Buy') {
 				await prisma.user.update({
 					where: { id: session.user.id },
 					data: { balance: user!.balance - req.body.amount },

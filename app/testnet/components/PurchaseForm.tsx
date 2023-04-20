@@ -2,6 +2,7 @@ import { useState } from 'react'
 import Image from 'next/image'
 import { ChevronRightIcon, BanknotesIcon } from '@heroicons/react/24/solid'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
+import { toast } from 'react-hot-toast'
 
 import { moneyParse } from '@/app/utils/parsers'
 import CoinForm from './CoinForm'
@@ -44,8 +45,9 @@ const PurchaseForm = ({
 		onSuccess: (data) => {
 			queryClient.invalidateQueries(['user'])
 		},
-		onError: (error) => {
+		onError: (error: any) => {
 			console.log('error', error)
+			toast.error(error.response.data.error)
 		},
 	})
 
