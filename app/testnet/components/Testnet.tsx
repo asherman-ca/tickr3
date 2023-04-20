@@ -15,15 +15,15 @@ type Props = {
 
 const Testnet = ({ coins, session }: Props) => {
 	const [modalActive, setModalActive] = useState(false)
-	// const { data: session, status: sessionStatus }: any = useSession()
-	// console.log('session', session)
+	const { data: clientSession, status: sessionStatus }: any = useSession()
+	console.log('session', session)
 	const {
 		data: user,
 		error,
 		isLoading,
 		isFetching,
 	} = useQuery({
-		queryFn: () => getUserProfile(session.user.id),
+		queryFn: () => getUserProfile(clientSession.user.id),
 		queryKey: [`user`],
 	})
 
