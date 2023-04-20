@@ -4,8 +4,9 @@ import PurchaseForm from './PurchaseForm'
 import { useState } from 'react'
 import OrderList from './OrderList'
 import { useQuery } from '@tanstack/react-query'
-import { getUser } from '@/app/utils/fetchers'
+import { getUser, getUserProfile } from '@/app/utils/fetchers'
 import Loader from '@/app/components/Loader'
+import { useSession } from 'next-auth/react'
 
 type Props = {
 	coins: coinType[]
@@ -14,13 +15,15 @@ type Props = {
 
 const Testnet = ({ coins, session }: Props) => {
 	const [modalActive, setModalActive] = useState(false)
+	// const { data: session, status: sessionStatus }: any = useSession()
+	// console.log('session', session)
 	const {
 		data: user,
 		error,
 		isLoading,
 		isFetching,
 	} = useQuery({
-		queryFn: () => getUser(),
+		queryFn: () => getUserProfile(session.user.id),
 		queryKey: [`user`],
 	})
 
