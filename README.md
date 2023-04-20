@@ -19,3 +19,4 @@ Prisma Commands:
 npx prisma studio (open db explorer in browser)
 npx prisma db push (syncs prisma schema with db)
 npx prisma generate (updates typescript for new schema - npm install also accomplishes this)
+npx prisma migrate dev
