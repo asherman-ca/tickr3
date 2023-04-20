@@ -10,6 +10,7 @@ export default async function handler(
 ) {
 	const session = await getServerSession(req, res, authOptions)
 	console.log('BODY', req.body)
+	console.log('SESSION', session.user.id)
 	if (req.method === 'POST') {
 		try {
 			const data = await prisma.like.create({
