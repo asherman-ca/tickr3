@@ -50,7 +50,7 @@ export default async function handler(
 			res.status(200).json(data)
 		} catch (err) {
 			res.status(403).json({
-				err: `Error has occured while adding order`,
+				err: `Error has occured while adding order. session: ${session.user.id}, req: ${req.body}`,
 			})
 		}
 	}
