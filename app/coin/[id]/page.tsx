@@ -20,7 +20,7 @@ async function page({ params }: { params: { id: string } }) {
 			: []
 
 	return (
-		<div className='srollable'>
+		<div className='srollable flex flex-col gap-8'>
 			<InfoBar
 				coin={coin}
 				coinId={coin.id}

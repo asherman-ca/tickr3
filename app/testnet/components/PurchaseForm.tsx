@@ -59,6 +59,11 @@ const PurchaseForm = ({
 		handleAddOrder({ ...formData, type: actionType })
 	}
 
+	const handleCustomSubmit = (e: React.MouseEvent, amount: number) => {
+		e.preventDefault()
+		handleAddOrder({ ...formData, type: actionType, amount: amount })
+	}
+
 	return (
 		<div className='hidden md:flex gap-6 flex-col basis-1/6 bg-white shadow-sm border border-gray-200 rounded-md relative text-base h-fit'>
 			{modalActive && (
@@ -145,13 +150,22 @@ const PurchaseForm = ({
 					</div>
 				</div>
 				<div className='flex gap-6'>
-					<button className='text-base font-semibold bg-gray-200 p-4 rounded-full basis-full'>
+					<button
+						onClick={(e) => handleCustomSubmit(e, 100)}
+						className='text-base font-semibold bg-gray-200 p-4 rounded-full basis-full'
+					>
 						$100
 					</button>
-					<button className='text-base font-semibold bg-gray-200 p-4 rounded-full basis-full'>
+					<button
+						onClick={(e) => handleCustomSubmit(e, 500)}
+						className='text-base font-semibold bg-gray-200 p-4 rounded-full basis-full'
+					>
 						$500
 					</button>
-					<button className='text-base font-semibold bg-gray-200 p-4 rounded-full basis-full'>
+					<button
+						onClick={(e) => handleCustomSubmit(e, 1000)}
+						className='text-base font-semibold bg-gray-200 p-4 rounded-full basis-full'
+					>
 						$1,000
 					</button>
 				</div>

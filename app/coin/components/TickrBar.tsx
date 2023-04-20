@@ -11,12 +11,12 @@ function TickrBar({
 	markets: marketType[]
 }) {
 	return (
-		<div className='flex flex-col gap-2 px-12 py-4 border-b-2 border-slate-200'>
+		<div className='flex flex-col gap-4 px-12'>
 			<div className='text-xl font-medium'>{title} Markets</div>
 			<table className=''>
 				<thead className=''>
-					<tr>
-						<th className='text-start'>#</th>
+					<tr className='border-b border-t border-gray-200'>
+						<th className='text-start py-4'>#</th>
 						<th className='text-start'>Source</th>
 						<th className='text-start'>Pairs</th>
 						<th className='text-end'>Price</th>
@@ -27,8 +27,11 @@ function TickrBar({
 				</thead>
 				<tbody className='font-normal'>
 					{markets.map((market, idx) => (
-						<tr key={cuid()} className='hover:bg-blue-50'>
-							<td className='text-start py-2 font-medium'>{idx + 1}</td>
+						<tr
+							key={cuid()}
+							className='hover:bg-blue-50 border-b border-gray-200'
+						>
+							<td className='text-start py-4 font-medium'>{idx + 1}</td>
 							<td className='text-start font-medium'>
 								<a
 									href={`${market.trade_url}`}
