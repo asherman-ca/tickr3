@@ -25,10 +25,25 @@ export default async function handler(
 					coin: req.body.coin,
 				},
 			})
+			// find user
+			const user = await prisma.user.findUnique({
+				where: { id: session.user.id },
+			})
+			if (req.body.type === 'buy') {
+				await prisma.user.update({
+					where: { id: session.user.id },
+					data: { balance: user!.balance - req.body.amount },
+				})
+			} else {
+				await prisma.user.update({
+					where: { id: session.user.id },
+					data: { balance: user!.balance + req.body.amount },
+				})
+			}
 			res.status(200).json(data)
 		} catch (err) {
 			res.status(403).json({
-				err: `Error has occured while liking post userId: ${session.user.id}, coinId: ${req.body.coinId}`,
+				err: `Error has occured while adding order`,
 			})
 		}
 	}
