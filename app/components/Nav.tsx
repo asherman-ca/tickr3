@@ -72,14 +72,14 @@ async function Nav() {
 					<div className='flex'>
 						<Link
 							href={'/profile'}
-							className='text-slate-500 flex items-center gap-1 p-2 rounded-md hover:bg-slate-100'
+							className='text-slate-500 flex items-center gap-1 p-2 rounded-md hover:bg-slate-100 profile-button'
 						>
 							<StarIcon color={'gray'} height={18} width={18} />
 							Profile
 						</Link>
 						<Link
 							href={'/testnet'}
-							className='text-slate-500 flex items-center gap-1 p-2 rounded-md hover:bg-slate-100'
+							className='text-slate-500 flex items-center gap-1 p-2 rounded-md hover:bg-slate-100 profile-button'
 						>
 							<ChartPieIcon color={'gray'} height={18} width={18} />
 							Exchange
