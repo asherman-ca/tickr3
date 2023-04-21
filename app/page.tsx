@@ -5,6 +5,7 @@ import Highlights from './components/Highlights'
 export default async function Home() {
 	const globals = await getStaticGlobal()
 	const coins = await getStaticCoins()
+
 	const hourTrends = [...coins]
 		.sort(
 			(a, b) =>

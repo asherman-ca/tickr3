@@ -10,12 +10,19 @@ import { numParse, moneyParse, numParseNoDecimal } from '../utils/parsers'
 import { StarIcon } from '@heroicons/react/24/solid'
 import { ChartPieIcon } from '@heroicons/react/24/solid'
 
+// move the fetch into the global layout and drill down in order to use the error component there
+
 async function Nav() {
 	const [data, session, global] = await Promise.all([
 		getStaticCoins(),
 		getServerSession(authOptions),
 		getStaticGlobal(),
 	])
+
+	/* @ts-expect-error*/
+	if (data.status.error_code === 403) {
+		return <div />
+	}
 
 	return (
 		<nav className='flex bg-white pt-2 pb-4 box-shadow-grey flex-col px-12'>
