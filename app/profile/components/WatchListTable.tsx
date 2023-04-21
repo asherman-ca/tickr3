@@ -1,9 +1,10 @@
-import { likeType, coinType, sessionType } from '@/app/utils/types'
 import { useQuery } from '@tanstack/react-query'
-import { getUserLikes } from '@/app/utils/fetchers'
-import { numParseTwoDecimal, moneyParse } from '@/app/utils/parsers'
 import Link from 'next/link'
 import Image from 'next/image'
+
+import { likeType, coinType, sessionType } from '@/app/utils/types'
+import { getUserLikes } from '@/app/utils/fetchers'
+import { numParseTwoDecimal, moneyParse } from '@/app/utils/parsers'
 import Loader from '@/app/components/Loader'
 
 const WatchListTable = ({
