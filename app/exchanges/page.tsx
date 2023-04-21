@@ -1,5 +1,7 @@
-import { getStaticExchanges } from '../utils/fetchers'
 import ExchangesTable from './components/ExchangesTable'
+import { getStaticExchanges } from '../utils/fetchers'
+
+export const revalidate = 86400
 
 const page = async () => {
 	const exchanges = await getStaticExchanges()
