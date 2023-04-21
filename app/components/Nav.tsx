@@ -20,7 +20,7 @@ async function Nav() {
 	])
 
 	/* @ts-expect-error*/
-	if (data.status.error_code === 403) {
+	if (data.status?.error_code === 403) {
 		return <div />
 	}
 
