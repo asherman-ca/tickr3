@@ -38,7 +38,6 @@ function likeButton({
 
 	const { mutate: handleAddLike } = useMutation(addLike, {
 		onSuccess: (data) => {
-			// queryClient.invalidateQueries([`coinLikes-${coinId}`])
 			queryClient.setQueryData([`coinLikes-${coinId}`], (oldData: any) => {
 				const newLike = {
 					userId: session.user.id,
@@ -56,7 +55,6 @@ function likeButton({
 
 	const { mutate: handleRemoveLike } = useMutation(removeLike, {
 		onSuccess: (data) => {
-			// queryClient.invalidateQueries([`coinLikes-${coinId}`])
 			queryClient.setQueryData([`coinLikes-${coinId}`], (oldData: any) => {
 				return oldData.filter((like: any) => {
 					return like.userId !== session.user.id

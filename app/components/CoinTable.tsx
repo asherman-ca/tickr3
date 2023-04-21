@@ -87,7 +87,7 @@ const CoinTable = ({
 							<td>
 								<Link
 									href={`/coin/${coin.id}`}
-									className='font-medium flex items-center gap-1'
+									className='font-medium flex items-center gap-2'
 								>
 									<Image
 										src={coin.image}
