@@ -97,10 +97,7 @@ export const removeLike = async (coinId: string) => {
 
 export const getStaticExchanges = async (): Promise<exchangeType[]> => {
 	const res = await fetch(
-		`https://api.coingecko.com/api/v3/exchanges?per_page=40`,
-		{
-			next: { revalidate: 600 },
-		}
+		`https://api.coingecko.com/api/v3/exchanges?per_page=40`
 	)
 	const json = await res.json()
 	if (json.error) {
