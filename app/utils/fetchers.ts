@@ -1,5 +1,6 @@
 import { coinView, likeType, globalType, coinType, exchangeType } from './types'
 import axios from 'axios'
+import { cache } from 'react'
 
 export const getStaticLikes = async (coinId: string): Promise<likeType[]> => {
 	const res = await fetch(
@@ -24,7 +25,7 @@ export const getStaticCoin = async (coinId: string): Promise<coinView> => {
 	return await res.json()
 }
 
-export const getStaticCoins = async (): Promise<coinType[]> => {
+export const getStaticCoins = cache(async (): Promise<coinType[]> => {
 	const res = await fetch(
 		`https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&price_change_percentage=1h,24h,7d,30d`,
 		{
@@ -37,9 +38,9 @@ export const getStaticCoins = async (): Promise<coinType[]> => {
 	} else {
 		return json
 	}
-}
+})
 
-export const getStaticGlobal = async (): Promise<globalType> => {
+export const getStaticGlobal = cache(async (): Promise<globalType> => {
 	const res = await fetch('https://api.coingecko.com/api/v3/global', {
 		next: { revalidate: 600 },
 	})
@@ -47,7 +48,7 @@ export const getStaticGlobal = async (): Promise<globalType> => {
 	const json = await res.json()
 
 	return json
-}
+})
 
 export const getUserLikes = async (userId: string): Promise<likeType[]> => {
 	const res = await axios.get(
@@ -143,13 +144,7 @@ export const getUser = async (): Promise<any> => {
 	return res.data
 }
 
-export const getUserProfile = async (userId: string): Promise<any> => {
-	// const res = await axios.get(
-	// 	`${
-	// 		process.env.NEXT_PUBLIC_HOST_URL || 'http://localhost:3000'
-	// 	}/api/user/getUserProfile`
-	// )
-	// return res.data
+export const getUserProfile = cache(async (userId: string): Promise<any> => {
 	const res = await fetch(
 		`${process.env.NEXT_PUBLIC_HOST_URL}/api/user/${userId}`
 	)
@@ -157,4 +152,4 @@ export const getUserProfile = async (userId: string): Promise<any> => {
 	const json = await res.json()
 
 	return json
-}
+})

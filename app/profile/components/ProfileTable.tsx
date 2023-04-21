@@ -4,7 +4,7 @@ import { ChartPieIcon, StarIcon } from '@heroicons/react/24/solid'
 import WatchListTable from './WatchListTable'
 import PortfolioTable from './PortfolioTable'
 
-const ProfileTable = ({ user }: any) => {
+const ProfileTable = ({ user, coins, session }: any) => {
 	const [showWatchlist, setShowWatchlist] = useState(true)
 
 	return (
@@ -25,7 +25,11 @@ const ProfileTable = ({ user }: any) => {
 					Portfolio
 				</button>
 			</div>
-			{showWatchlist ? <WatchListTable /> : <PortfolioTable />}
+			{showWatchlist ? (
+				<WatchListTable coins={coins} session={session} />
+			) : (
+				<PortfolioTable orders={user.orders} />
+			)}
 		</div>
 	)
 }

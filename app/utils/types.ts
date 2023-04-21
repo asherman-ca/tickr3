@@ -121,6 +121,7 @@ export type sessionType = {
 export type likeType = {
 	coinId: string
 	userId: string
+	coin: string
 	id: string
 }
 

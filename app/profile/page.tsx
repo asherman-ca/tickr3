@@ -1,8 +1,10 @@
-import { getUserProfile } from '../utils/fetchers'
+import { getStaticCoins, getUserProfile } from '../utils/fetchers'
 import { authOptions } from '@/pages/api/auth/[...nextauth]'
 import { getServerSession } from 'next-auth'
 import Login from '../components/Login'
 import ProfileTable from './components/ProfileTable'
+
+export const revalidate = 0
 
 async function page() {
 	const session = await getServerSession(authOptions)
@@ -17,11 +19,12 @@ async function page() {
 	}
 
 	const userData = await getUserProfile(session.user.id)
+	const coins = await getStaticCoins()
 
 	return (
 		<div className='flex flex-col py-8 gap-4'>
 			<div className='text-2xl font-bold px-12'>Profile</div>
-			<ProfileTable user={userData} />
+			<ProfileTable user={userData} coins={coins} session={session} />
 		</div>
 	)
 }
