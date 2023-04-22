@@ -3,9 +3,13 @@ import { useState } from 'react'
 import { ChartPieIcon, StarIcon } from '@heroicons/react/24/solid'
 import WatchListTable from './WatchListTable'
 import PortfolioTable from './PortfolioTable'
+import { calcPNL } from '@/app/utils/account'
 
 const ProfileTable = ({ user, coins, session }: any) => {
 	const [showWatchlist, setShowWatchlist] = useState(true)
+	const pnl = calcPNL(user.orders, coins)
+	console.log('PNL', pnl)
+	// console.log('orders', user.orders)
 
 	return (
 		<div className='flex flex-col gap-4 px-12'>
