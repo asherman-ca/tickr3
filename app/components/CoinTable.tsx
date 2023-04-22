@@ -15,30 +15,6 @@ import Pagination from './Pagination'
 const rowsPerPageOptions = [10, 25, 50, 100]
 
 const CoinTable = ({ coins }: { coins: coinTableType[] }) => {
-	const [rowsPerPage, setRowsPerPage] = useState<number>(rowsPerPageOptions[1])
-	const [currentPage, setCurrentPage] = useState<number>(1)
-
-	const updateRowsPerPage = (rowsNumber: number) => {
-		setRowsPerPage(rowsNumber)
-		setCurrentPage(1)
-	}
-
-	const nextPage = () => {
-		setCurrentPage((prev) => prev + 1)
-		window.scrollTo({
-			top: 0,
-			behavior: 'smooth',
-		})
-	}
-
-	const prevPage = () => {
-		setCurrentPage((prev) => prev - 1)
-		window.scrollTo({
-			top: 0,
-			behavior: 'smooth',
-		})
-	}
-
 	const [sortParam, setSortParam] = useState<{
 		direction: string
 		type: string
@@ -65,6 +41,36 @@ const CoinTable = ({ coins }: { coins: coinTableType[] }) => {
 	const displayCoins = useMemo(() => {
 		return parsedCoins
 	}, [parsedCoins, sortParam])
+
+	const [rowsPerPage, setRowsPerPage] = useState<number>(rowsPerPageOptions[1])
+	const [currentPage, setCurrentPage] = useState<number>(1)
+	const lastPage =
+		displayCoins.length % rowsPerPage === 0
+			? displayCoins.length / rowsPerPage
+			: Math.floor(displayCoins.length / rowsPerPage) + 1
+
+	const updateRowsPerPage = (rowsNumber: number) => {
+		setRowsPerPage(rowsNumber)
+		setCurrentPage(1)
+	}
+
+	const nextPage = () => {
+		if (currentPage === lastPage) return
+		setCurrentPage((prev) => prev + 1)
+		window.scrollTo({
+			top: 0,
+			behavior: 'smooth',
+		})
+	}
+
+	const prevPage = () => {
+		if (currentPage === 1) return
+		setCurrentPage((prev) => prev - 1)
+		window.scrollTo({
+			top: 0,
+			behavior: 'smooth',
+		})
+	}
 
 	if (session && isFetching) {
 		return <Loader />

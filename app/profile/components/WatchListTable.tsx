@@ -43,7 +43,10 @@ const WatchListTable = ({
 			</thead>
 			<tbody>
 				{coinPairs.map((coin) => (
-					<tr key={coin.id} className='border-b border-slate-200'>
+					<tr
+						key={coin.id}
+						className='border-b border-slate-200 hover:bg-blue-50'
+					>
 						<td className='text-left py-4'>
 							<Link
 								href={`/coin/${coin.id}`}

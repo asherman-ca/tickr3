@@ -1,6 +1,12 @@
 import React from 'react'
 import { paginationRange } from './PaginationRange'
 import styles from './Pagination.module.css'
+import { EllipsisHorizontalIcon } from '@heroicons/react/24/solid'
+import {
+	ChevronUpIcon,
+	ChevronLeftIcon,
+	ChevronRightIcon,
+} from '@heroicons/react/24/outline'
 const {
 	pagination,
 	showRows,
@@ -48,8 +54,8 @@ const Pagination = ({
 	}
 
 	return (
-		<div className={`${pagination}`}>
-			<div>
+		<div className='flex items-center justify-between py-4 px-2'>
+			<div className='basis-1/5'>
 				<button
 					className='top-button'
 					onClick={() => {
@@ -59,34 +65,34 @@ const Pagination = ({
 						})
 					}}
 				>
-					<i className='fa-solid fa-chevron-up'></i>
+					<ChevronUpIcon height={24} width={24} />
 				</button>
 			</div>
-			<div className={`${pages}`}>
+			<div className='basis-3/5 flex justify-center items-center gap-2'>
 				<button
-					disabled={currentPage === 1}
-					className={
-						currentPage !== 1
-							? `${pageScrollButton}`
-							: `${pageScrollButton} inactive`
-					}
+					// disabled={currentPage === 1}
 					onClick={() => {
 						prevPage()
 					}}
+					className={`${
+						currentPage != 1
+							? 'hover:bg-gray-200 cursor-pointer'
+							: 'cursor-not-allowed'
+					} p-2 rounded-md`}
 				>
-					<i className='fa-solid fa-chevron-left'></i>
+					<ChevronLeftIcon height={24} width={24} />
 				</button>
 
 				{paginationPages.map((pageNumber: number | string, ind: number) => {
 					if (pageNumber === '...') {
 						return (
 							<div key={ind} className={`${dots}`}>
-								<i className='fa-solid fa-ellipsis'></i>
+								<EllipsisHorizontalIcon height={24} width={24} />
 							</div>
 						)
 					} else if (pageNumber === currentPage) {
 						return (
-							<button key={ind} className={`${pageButton} ${active}`}>
+							<button key={ind} className='px-4 py-2 rounded-md bg-gray-200'>
 								{pageNumber}
 							</button>
 						)
@@ -94,7 +100,7 @@ const Pagination = ({
 						return (
 							<button
 								key={ind}
-								className={`${pageButton}`}
+								className='px-4 py-2 rounded-md hover:bg-gray-200'
 								onClick={() => {
 									setCurrentPage(pageNumber)
 									window.scrollTo({
@@ -110,18 +116,17 @@ const Pagination = ({
 				})}
 
 				<button
-					disabled={currentPage === lastPage}
-					className={
-						currentPage !== lastPage
-							? `${pageScrollButton}`
-							: `${pageScrollButton} inactive`
-					}
+					className={`${
+						currentPage != lastPage
+							? 'hover:bg-gray-200 cursor-pointer'
+							: 'cursor-not-allowed'
+					} p-2 rounded-md`}
 					onClick={() => nextPage()}
 				>
-					<i className='fa-solid fa-chevron-right'></i>
+					<ChevronRightIcon height={24} width={24} />
 				</button>
 			</div>
-			<div className={`${showRows}`}>
+			<div className='basis-1/5 flex justify-end items-center'>
 				<div>Show rows</div>
 				<select
 					name=''
