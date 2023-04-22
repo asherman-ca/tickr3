@@ -1,9 +1,9 @@
 import { sortParamType } from './types'
 import { useMemo } from 'react'
-import { coinType } from './types'
+import { coinTableType } from './types'
 
 export const displayCoinsMemo = (
-	coins: coinType[],
+	coins: coinTableType[],
 	loading: boolean,
 	sortParam: { type: string; direction: string }
 ) => {
@@ -18,6 +18,9 @@ export const displayCoinsMemo = (
 		// 		return coin
 		// 	}
 		// })
+		console.log('COINS', coins)
+		console.log('LOADING', loading)
+		console.log('SORT PARAM', sortParam)
 
 		if (sortParam.type === 'mcap') {
 			if (sortParam.direction === 'desc') {

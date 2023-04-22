@@ -12,14 +12,14 @@ import { moneyParse, numParseTwoDecimal } from '../utils/parsers'
 import Loader from './Loader'
 import Image from 'next/image'
 import Pagination from './Pagination'
-// import { displayCoinsMemo, handleSort } from '../utils/actions'
+import { displayCoinsMemo, handleSort } from '../utils/actions'
 const rowsPerPageOptions = [10, 25, 50, 100]
 
 const CoinTable = ({ coins }: { coins: coinTableType[] }) => {
 	const [sortParam, setSortParam] = useState<{
 		direction: string
 		type: string
-	}>({ direction: 'desc', type: 'market_cap' })
+	}>({ direction: 'desc', type: 'mcap' })
 	const { data: session }: any = useSession()
 
 	const { data, error, isLoading, isFetching }: any = useQuery({
@@ -39,11 +39,11 @@ const CoinTable = ({ coins }: { coins: coinTableType[] }) => {
 		}
 	}, [data])
 
-	const displayCoins = useMemo(() => {
-		return parsedCoins
-	}, [parsedCoins, sortParam])
-
-	// const displayCoins2 = displayCoinsMemo(parsedCoins, isFetching, sortParam)
+	const displayCoins = displayCoinsMemo(
+		parsedCoins,
+		isFetching,
+		sortParam
+	) as coinTableType[]
 
 	const [rowsPerPage, setRowsPerPage] = useState<number>(rowsPerPageOptions[1])
 	const [currentPage, setCurrentPage] = useState<number>(1)
@@ -82,24 +82,92 @@ const CoinTable = ({ coins }: { coins: coinTableType[] }) => {
 	// TODO: get rid of react-query and if session then raw fetch likes from useEffect on every mount to fix like-change bug
 	// or see if SWR invalidation works
 
-	// console.log('displayCoins', displayCoins2)
+	console.log(sortParam, 'SORTPARAM')
 
 	return (
 		<div className='w-full'>
 			<table className='w-full'>
 				<thead>
-					<tr className='border-gray-200 border-b border-t'>
-						<th className='py-2'>
-							{/* <StarIcon height={14} width={14} className='' /> */}
-						</th>
+					<tr className='border-gray-200 border-b'>
+						<th className='py-2'></th>
 						<th className='text-left py-4'>#</th>
-						<th className='text-left '>Name</th>
-						<th className='text-right '>Price</th>
-						<th className='text-right '>1h%</th>
-						<th className='text-right '>24h%</th>
-						<th className='text-right '>7d%</th>
-						<th className='text-right '>Market Cap</th>
-						<th className='text-right pr-2'>Volume(24h)</th>
+						<th className='text-left'>Name</th>
+						<th className='text-right'>Price</th>
+						<th
+							className={`text-right cursor-pointer hover:text-green-500 ${
+								sortParam.type === '1hr' &&
+								sortParam.direction === 'asc' &&
+								'text-red-500'
+							} ${
+								sortParam.type === '1hr' &&
+								sortParam.direction === 'desc' &&
+								'text-green-500 hover:!text-red-500'
+							}
+							`}
+							onClick={() => handleSort('1hr', sortParam, setSortParam)}
+						>
+							1h%
+						</th>
+						<th
+							className={`text-right cursor-pointer hover:text-green-500 ${
+								sortParam.type === '24hr' &&
+								sortParam.direction === 'asc' &&
+								'text-red-500'
+							} ${
+								sortParam.type === '24hr' &&
+								sortParam.direction === 'desc' &&
+								'text-green-500 hover:!text-red-500'
+							}
+							`}
+							onClick={() => handleSort('24hr', sortParam, setSortParam)}
+						>
+							24h%
+						</th>
+						<th
+							className={`text-right cursor-pointer hover:text-green-500 ${
+								sortParam.type === '7d' &&
+								sortParam.direction === 'asc' &&
+								'text-red-500'
+							} ${
+								sortParam.type === '7d' &&
+								sortParam.direction === 'desc' &&
+								'text-green-500 hover:!text-red-500'
+							}
+							`}
+							onClick={() => handleSort('7d', sortParam, setSortParam)}
+						>
+							7d%
+						</th>
+						<th
+							className={`text-right cursor-pointer hover:text-green-500 ${
+								sortParam.type === 'mcap' &&
+								sortParam.direction === 'asc' &&
+								'text-red-500'
+							} ${
+								sortParam.type === 'mcap' &&
+								sortParam.direction === 'desc' &&
+								'text-green-500 hover:!text-red-500'
+							}
+							`}
+							onClick={() => handleSort('mcap', sortParam, setSortParam)}
+						>
+							Market Cap
+						</th>
+						<th
+							className={`text-right cursor-pointer hover:text-green-500 ${
+								sortParam.type === 'volume' &&
+								sortParam.direction === 'asc' &&
+								'text-red-500'
+							} ${
+								sortParam.type === 'volume' &&
+								sortParam.direction === 'desc' &&
+								'text-green-500 hover:!text-red-500'
+							}
+							`}
+							onClick={() => handleSort('volume', sortParam, setSortParam)}
+						>
+							Volume(24h)
+						</th>
 					</tr>
 				</thead>
 				<tbody>

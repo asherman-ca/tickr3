@@ -50,7 +50,13 @@ const HighlightTable = ({ coins, duration, title }: Props) => {
 				>
 					<div className='flex gap-3 items-center'>
 						<span className='text-slate-500'>{index + (page - 1) * 3 + 1}</span>
-						<Image height={24} width={24} src={coin.image} alt={coin.name} />
+						<Image
+							height={24}
+							width={24}
+							src={coin.image}
+							alt={coin.name}
+							className='h-[24px] w-[24px]'
+						/>
 						{coin.name}{' '}
 						<span className='text-slate-500'>{coin.symbol.toUpperCase()}</span>
 					</div>
