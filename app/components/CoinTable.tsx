@@ -187,7 +187,7 @@ const CoinTable = ({ coins }: { coins: coinTableType[] }) => {
 										)}
 									</td>
 									<td className='text-left py-6'>{coin.market_cap_rank}</td>
-									<td>
+									<td className='w-[250px]'>
 										<Link
 											href={`/coin/${coin.id}`}
 											className='font-medium flex items-center gap-2'

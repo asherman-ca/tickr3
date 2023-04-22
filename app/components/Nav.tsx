@@ -65,13 +65,13 @@ async function Nav() {
 			<div className='flex pt-4 '>
 				<div className='basis-4/6 flex items-center justify-start gap-8'>
 					<span className='text-2xl font-medium'>Tickr</span>
-					<Link className='font-medium' href='/'>
+					<Link className='font-medium hover:text-blue-500' href='/'>
 						Cryptocurrencies
 					</Link>
-					<Link className='font-medium' href='/exchanges'>
+					<Link className='font-medium hover:text-blue-500' href='/exchanges'>
 						Exchanges
 					</Link>
-					<Link className='font-medium' href='/leaderboard'>
+					<Link className='font-medium hover:text-blue-500' href='/leaderboard'>
 						Leaderboard
 					</Link>
 				</div>
