@@ -19,9 +19,9 @@ const WatchListTable = ({
 		queryKey: ['userLikes'],
 	})
 
-	const likeIds = data.map((like: likeType) => like.coinId)
+	const likeIds = data?.map((like: likeType) => like.coinId)
 	const coinPairs: coinType[] = coins.filter((coin) =>
-		likeIds.includes(coin.id)
+		likeIds?.includes(coin.id)
 	)
 
 	if (isFetching) {

@@ -158,3 +158,14 @@ export type exchangeType = {
 	trade_volume_24h_btc_normalized: number
 	error: string
 }
+
+export type accountType = {
+	coin: string
+	pnl: number
+	totalCoins: number
+	averagePrice: number
+	totalValue: number
+	rpnl: number
+	coinId: string
+	image: string
+}

@@ -63,6 +63,29 @@ export const moneyParse = (num: number): string => {
 	}
 }
 
+export const moneyParseTwoDecimal = (num: number): string => {
+	if (num) {
+		const options = {
+			style: 'currency',
+			currency: 'USD',
+			minimumFractionDigits: 2,
+		}
+
+		if (num < 0.1) {
+			return num.toLocaleString('en-US', options)
+		} else if (num > 1000000000000) {
+			return (num / 1000000000000).toLocaleString('en-US', options) + 'T'
+		} else if (num > 1000000000) {
+			return (num / 1000000000).toLocaleString('en-US', options) + 'B'
+		} else if (num > 1000000) {
+			return (num / 1000000).toLocaleString('en-US', options) + 'M'
+		}
+		return num.toLocaleString('en-US', options)
+	} else {
+		return `$0.00`
+	}
+}
+
 export const classNamer = (num: number): string => {
 	if (num > 0) {
 		return 'pos'
