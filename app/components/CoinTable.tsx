@@ -12,6 +12,7 @@ import { moneyParse, numParseTwoDecimal } from '../utils/parsers'
 import Loader from './Loader'
 import Image from 'next/image'
 import Pagination from './Pagination'
+// import { displayCoinsMemo, handleSort } from '../utils/actions'
 const rowsPerPageOptions = [10, 25, 50, 100]
 
 const CoinTable = ({ coins }: { coins: coinTableType[] }) => {
@@ -41,6 +42,8 @@ const CoinTable = ({ coins }: { coins: coinTableType[] }) => {
 	const displayCoins = useMemo(() => {
 		return parsedCoins
 	}, [parsedCoins, sortParam])
+
+	// const displayCoins2 = displayCoinsMemo(parsedCoins, isFetching, sortParam)
 
 	const [rowsPerPage, setRowsPerPage] = useState<number>(rowsPerPageOptions[1])
 	const [currentPage, setCurrentPage] = useState<number>(1)
@@ -78,6 +81,8 @@ const CoinTable = ({ coins }: { coins: coinTableType[] }) => {
 
 	// TODO: get rid of react-query and if session then raw fetch likes from useEffect on every mount to fix like-change bug
 	// or see if SWR invalidation works
+
+	// console.log('displayCoins', displayCoins2)
 
 	return (
 		<div className='w-full'>

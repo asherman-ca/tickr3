@@ -169,3 +169,8 @@ export type accountType = {
 	coinId: string
 	image: string
 }
+
+export type sortParamType = {
+	type: string
+	direction: string
+}
