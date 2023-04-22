@@ -54,7 +54,7 @@ const Pagination = ({
 	}
 
 	return (
-		<div className='flex items-center justify-between py-4 px-2'>
+		<div className='flex items-center justify-between pt-4 px-2'>
 			<div className='basis-1/5'>
 				<button
 					className='top-button'

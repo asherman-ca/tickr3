@@ -162,7 +162,7 @@ const CoinTable = ({ coins }: { coins: coinTableType[] }) => {
 									</td>
 									<td
 										className={`text-right ${
-											coin.price_change_percentage_7d_in_currency
+											coin.price_change_percentage_7d_in_currency > 0
 												? 'text-green-500'
 												: 'text-red-500'
 										}`}
