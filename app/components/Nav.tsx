@@ -19,10 +19,9 @@ async function Nav() {
 		getStaticGlobal(),
 	])
 
-	/* @ts-expect-error*/
-	if (data.status?.error_code === 403) {
-		return <div />
-	}
+	// if (data.status?.error_code === 403) {
+	// 	return <div />
+	// }
 
 	return (
 		<nav className='flex bg-white pt-2 pb-4 box-shadow-grey flex-col px-12'>

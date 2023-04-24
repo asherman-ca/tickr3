@@ -3,10 +3,16 @@ import { authOptions } from '@/pages/api/auth/[...nextauth]'
 import { getServerSession } from 'next-auth'
 import Testnet from './components/Testnet'
 import Login from '../components/Login'
+import { redirect } from 'next/navigation'
 
 async function page() {
-	const coins = await getStaticCoins()
 	const session = await getServerSession(authOptions)
+
+	if (!session) {
+		redirect('/')
+	}
+
+	const coins = await getStaticCoins()
 	coins.sort((a, b) => a.market_cap_rank - b.market_cap_rank)
 
 	if (!session) {

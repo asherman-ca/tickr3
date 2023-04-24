@@ -9,18 +9,6 @@ export const displayCoinsMemo = (
 ) => {
 	return useMemo(() => {
 		const { type, direction } = sortParam
-		// coins.map((coin) => {
-		// 	if (userLikes.includes(coin.id)) {
-		// 		coin.liked = true
-		// 		return coin
-		// 	} else {
-		// 		coin.liked = false
-		// 		return coin
-		// 	}
-		// })
-		console.log('COINS', coins)
-		console.log('LOADING', loading)
-		console.log('SORT PARAM', sortParam)
 
 		if (sortParam.type === 'mcap') {
 			if (sortParam.direction === 'desc') {

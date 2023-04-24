@@ -3,11 +3,16 @@ import { authOptions } from '@/pages/api/auth/[...nextauth]'
 import { getServerSession } from 'next-auth'
 import Login from '../components/Login'
 import ProfileTable from './components/ProfileTable'
+import { redirect } from 'next/navigation'
 
 export const revalidate = 0
 
 async function page() {
 	const session = await getServerSession(authOptions)
+
+	if (!session) {
+		redirect('/')
+	}
 
 	if (!session) {
 		return (

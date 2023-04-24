@@ -32,7 +32,7 @@ const WatchListTable = ({
 		<table>
 			<thead>
 				<tr className='border-b border-slate-200'>
-					<th className='text-left py-4'>Symbol</th>
+					<th className='text-left py-4'>Coin</th>
 					<th className='text-right'>Price</th>
 					<th className='text-right'>1h%</th>
 					<th className='text-right'>24h%</th>

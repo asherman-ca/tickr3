@@ -17,6 +17,7 @@ const calcPNL = (orders: any[], coins: coinType[]) => {
 				earn: 0,
 				coinId: order.coinId,
 				image: order.image,
+				symbol: order.symbol,
 			}
 		} else {
 			accounts[order.coin].amount += order.amount
@@ -54,6 +55,7 @@ const calcPNL = (orders: any[], coins: coinType[]) => {
 				rpnl: account.earn - account.totalSold * account.averagePrice,
 				coinId: account.coinId,
 				image: account.image,
+				symbol: account.symbol,
 			})
 		}
 	})

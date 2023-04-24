@@ -168,6 +168,7 @@ export type accountType = {
 	rpnl: number
 	coinId: string
 	image: string
+	symbol: string
 }
 
 export type sortParamType = {
