@@ -6,6 +6,7 @@ import { getUserLikes } from '../utils/fetchers'
 import { useQuery } from '@tanstack/react-query'
 import { StarIcon } from '@heroicons/react/24/outline'
 import { StarIcon as SolidStarIcon } from '@heroicons/react/24/solid'
+import { VscTriangleDown, VscTriangleUp } from 'react-icons/vsc'
 
 import { coinTableType, likeType } from '../utils/types'
 import { moneyParse, numParseTwoDecimal } from '../utils/parsers'
@@ -82,8 +83,6 @@ const CoinTable = ({ coins }: { coins: coinTableType[] }) => {
 	// TODO: get rid of react-query and if session then raw fetch likes from useEffect on every mount to fix like-change bug
 	// or see if SWR invalidation works
 
-	console.log(sortParam, 'SORTPARAM')
-
 	return (
 		<div className='w-full'>
 			<table className='w-full'>
@@ -94,79 +93,70 @@ const CoinTable = ({ coins }: { coins: coinTableType[] }) => {
 						<th className='text-left'>Name</th>
 						<th className='text-right'>Price</th>
 						<th
-							className={`text-right cursor-pointer hover:text-green-500 ${
-								sortParam.type === '1hr' &&
-								sortParam.direction === 'asc' &&
-								'text-red-500'
-							} ${
-								sortParam.type === '1hr' &&
-								sortParam.direction === 'desc' &&
-								'text-green-500 hover:!text-red-500'
-							}
-							`}
+							className={`text-right cursor-pointer`}
 							onClick={() => handleSort('1hr', sortParam, setSortParam)}
 						>
-							1h%
+							<div className='flex gap-2 items-center justify-end'>
+								{sortParam.type === '1hr' && sortParam.direction === 'asc' && (
+									<VscTriangleUp />
+								)}
+								{sortParam.type === '1hr' && sortParam.direction === 'desc' && (
+									<VscTriangleDown />
+								)}
+								1h%
+							</div>
 						</th>
 						<th
-							className={`text-right cursor-pointer hover:text-green-500 ${
-								sortParam.type === '24hr' &&
-								sortParam.direction === 'asc' &&
-								'text-red-500'
-							} ${
-								sortParam.type === '24hr' &&
-								sortParam.direction === 'desc' &&
-								'text-green-500 hover:!text-red-500'
-							}
-							`}
+							className={`text-right cursor-pointer`}
 							onClick={() => handleSort('24hr', sortParam, setSortParam)}
 						>
-							24h%
+							<div className='flex gap-2 items-center justify-end'>
+								{sortParam.type === '24hr' && sortParam.direction === 'asc' && (
+									<VscTriangleUp />
+								)}
+								{sortParam.type === '24hr' &&
+									sortParam.direction === 'desc' && <VscTriangleDown />}
+								24h%
+							</div>
 						</th>
 						<th
-							className={`text-right cursor-pointer hover:text-green-500 ${
-								sortParam.type === '7d' &&
-								sortParam.direction === 'asc' &&
-								'text-red-500'
-							} ${
-								sortParam.type === '7d' &&
-								sortParam.direction === 'desc' &&
-								'text-green-500 hover:!text-red-500'
-							}
-							`}
+							className={`text-right cursor-pointer`}
 							onClick={() => handleSort('7d', sortParam, setSortParam)}
 						>
-							7d%
+							<div className='flex gap-2 items-center justify-end'>
+								{sortParam.type === '7d' && sortParam.direction === 'asc' && (
+									<VscTriangleUp />
+								)}
+								{sortParam.type === '7d' && sortParam.direction === 'desc' && (
+									<VscTriangleDown />
+								)}
+								7d%
+							</div>
 						</th>
 						<th
-							className={`text-right cursor-pointer hover:text-green-500 ${
-								sortParam.type === 'mcap' &&
-								sortParam.direction === 'asc' &&
-								'text-red-500'
-							} ${
-								sortParam.type === 'mcap' &&
-								sortParam.direction === 'desc' &&
-								'text-green-500 hover:!text-red-500'
-							}
-							`}
+							className={`text-right cursor-pointer`}
 							onClick={() => handleSort('mcap', sortParam, setSortParam)}
 						>
-							Market Cap
+							<div className='flex gap-2 items-center justify-end'>
+								{sortParam.type === 'mcap' && sortParam.direction === 'asc' && (
+									<VscTriangleUp />
+								)}
+								{sortParam.type === 'mcap' &&
+									sortParam.direction === 'desc' && <VscTriangleDown />}
+								Market Cap
+							</div>
 						</th>
 						<th
-							className={`text-right cursor-pointer hover:text-green-500 ${
-								sortParam.type === 'volume' &&
-								sortParam.direction === 'asc' &&
-								'text-red-500'
-							} ${
-								sortParam.type === 'volume' &&
-								sortParam.direction === 'desc' &&
-								'text-green-500 hover:!text-red-500'
-							}
-							`}
+							className={`text-right cursor-pointer`}
 							onClick={() => handleSort('volume', sortParam, setSortParam)}
 						>
-							Volume(24h)
+							<div className='flex gap-2 items-center justify-end'>
+								{sortParam.type === 'volume' &&
+									sortParam.direction === 'asc' && <VscTriangleUp />}
+								{sortParam.type === 'volume' &&
+									sortParam.direction === 'desc' && <VscTriangleDown />}
+								Volume(24h)
+							</div>
 						</th>
 					</tr>
 				</thead>
