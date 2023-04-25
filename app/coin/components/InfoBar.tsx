@@ -49,7 +49,7 @@ function InfoBar({
 					</div>
 				</div>
 				<div className='flex gap-8 text-base'>
-					<div>
+					<div className='hidden sm:block'>
 						<div className='text-slate-500'>1h %</div>
 						<div
 							className={`${
@@ -100,7 +100,7 @@ function InfoBar({
 							{moneyParse(coin.market_data.market_cap.usd)}
 						</div>
 					</div>
-					<div>
+					<div className='hidden sm:block'>
 						<div className='text-slate-500'>Volume (24h)</div>
 						<div className='font-medium'>
 							{moneyParse(coin.market_data.total_volume.usd)}
