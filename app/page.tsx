@@ -36,7 +36,7 @@ export default async function Home() {
 				weekTrends={weekTrends}
 				globals={globals}
 			/>
-			<div className='px-12 flex flex-1'>
+			<div className='px-4 md:px-12 flex flex-1'>
 				{/* @ts-ignore */}
 				<CoinTableContainer coins={coins} />
 			</div>

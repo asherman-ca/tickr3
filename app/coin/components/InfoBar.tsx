@@ -22,7 +22,7 @@ function InfoBar({
 }) {
 	return (
 		<div className='flex flex-col gap-4 border-b border-slate-200 pb-4 pt-8'>
-			<div className='flex flex-col gap-4 px-12'>
+			<div className='flex flex-col gap-4 px-4 md:px-12'>
 				<div className='flex gap-4'>
 					<div className='flex gap-2'>
 						<Image
@@ -109,7 +109,7 @@ function InfoBar({
 				</div>
 			</div>
 
-			<div className='flex justify-between border-t border-slate-200 pt-4 px-12'>
+			<div className='flex justify-between border-t border-slate-200 pt-4 px-4 md:px-12'>
 				<div className='flex items-center'>
 					<LikeButton
 						coinId={coinId}

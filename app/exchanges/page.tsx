@@ -8,7 +8,7 @@ const page = async () => {
 
 	return (
 		<div className='py-8 flex flex-col gap-8'>
-			<div className='px-12 flex flex-col gap-2'>
+			<div className='px-4 md:px-12 flex flex-col gap-2'>
 				<div className='font-bold text-2xl'>
 					Top Cryptocurrency Spot Exchanges
 				</div>
@@ -18,7 +18,7 @@ const page = async () => {
 					reported.
 				</div>
 			</div>
-			<div className='px-12 flex flex-1'>
+			<div className='px-4 md:px-12 flex flex-1'>
 				<ExchangesTable exchanges={exchanges} />
 			</div>
 		</div>
