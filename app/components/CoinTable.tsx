@@ -93,7 +93,7 @@ const CoinTable = ({ coins }: { coins: coinTableType[] }) => {
 						<th className='text-left'>Name</th>
 						<th className='text-right'>Price</th>
 						<th
-							className={`text-right cursor-pointer`}
+							className={`text-right cursor-pointer hidden md:table-cell`}
 							onClick={() => handleSort('1hr', sortParam, setSortParam)}
 						>
 							<div className='flex gap-2 items-center justify-end'>
@@ -107,7 +107,7 @@ const CoinTable = ({ coins }: { coins: coinTableType[] }) => {
 							</div>
 						</th>
 						<th
-							className={`text-right cursor-pointer`}
+							className={`text-right cursor-pointer hidden sm:table-cell`}
 							onClick={() => handleSort('24hr', sortParam, setSortParam)}
 						>
 							<div className='flex gap-2 items-center justify-end'>
@@ -120,7 +120,7 @@ const CoinTable = ({ coins }: { coins: coinTableType[] }) => {
 							</div>
 						</th>
 						<th
-							className={`text-right cursor-pointer`}
+							className={`text-right cursor-pointer hidden md:table-cell`}
 							onClick={() => handleSort('7d', sortParam, setSortParam)}
 						>
 							<div className='flex gap-2 items-center justify-end'>
@@ -134,7 +134,7 @@ const CoinTable = ({ coins }: { coins: coinTableType[] }) => {
 							</div>
 						</th>
 						<th
-							className={`text-right cursor-pointer`}
+							className={`text-right cursor-pointer hidden md:table-cell`}
 							onClick={() => handleSort('mcap', sortParam, setSortParam)}
 						>
 							<div className='flex gap-2 items-center justify-end'>
@@ -147,7 +147,7 @@ const CoinTable = ({ coins }: { coins: coinTableType[] }) => {
 							</div>
 						</th>
 						<th
-							className={`text-right cursor-pointer`}
+							className={`text-right cursor-pointer hidden md:table-cell`}
 							onClick={() => handleSort('volume', sortParam, setSortParam)}
 						>
 							<div className='flex gap-2 items-center justify-end'>
@@ -200,7 +200,7 @@ const CoinTable = ({ coins }: { coins: coinTableType[] }) => {
 										{moneyParse(coin.current_price)}
 									</td>
 									<td
-										className={`text-right ${
+										className={`text-right min-w-[10%] hidden md:table-cell ${
 											coin.price_change_percentage_1h_in_currency > 0
 												? 'text-green-500'
 												: 'text-red-500'
@@ -212,7 +212,7 @@ const CoinTable = ({ coins }: { coins: coinTableType[] }) => {
 										%
 									</td>
 									<td
-										className={`text-right ${
+										className={`text-right min-w-[10%] hidden sm:table-cell ${
 											coin.price_change_percentage_24h_in_currency > 0
 												? 'text-green-500'
 												: 'text-red-500'
@@ -224,7 +224,7 @@ const CoinTable = ({ coins }: { coins: coinTableType[] }) => {
 										%
 									</td>
 									<td
-										className={`text-right ${
+										className={`text-right min-w-[10%] hidden md:table-cell ${
 											coin.price_change_percentage_7d_in_currency > 0
 												? 'text-green-500'
 												: 'text-red-500'
@@ -235,8 +235,10 @@ const CoinTable = ({ coins }: { coins: coinTableType[] }) => {
 										)}
 										%
 									</td>
-									<td className='text-right'>{moneyParse(coin.market_cap)}</td>
-									<td className='text-right pr-2'>
+									<td className='text-right min-w-[10%] hidden md:table-cell'>
+										{moneyParse(coin.market_cap)}
+									</td>
+									<td className='text-right min-w-[10%] pr-2 hidden md:table-cell'>
 										{moneyParse(coin.total_volume)}
 									</td>
 								</tr>

@@ -55,7 +55,7 @@ const Pagination = ({
 
 	return (
 		<div className='flex items-center justify-between pt-4 px-2'>
-			<div className='basis-1/5'>
+			<div className='hidden md:flex basis-1/5'>
 				<button
 					className='top-button'
 					onClick={() => {
@@ -126,7 +126,7 @@ const Pagination = ({
 					<ChevronRightIcon height={24} width={24} />
 				</button>
 			</div>
-			<div className='basis-1/5 flex justify-end items-center'>
+			<div className='hidden md:flex basis-1/5 justify-end items-center'>
 				<div>Show rows</div>
 				<select
 					name=''

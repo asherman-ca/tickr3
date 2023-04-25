@@ -16,8 +16,8 @@ const Highlights = ({ hourTrends, dayTrends, weekTrends, globals }: Props) => {
 	const [showHighlights, setShowHighlights] = useState(true)
 
 	return (
-		<div className='flex flex-col gap-4'>
-			<div className='flex justify-between px-12'>
+		<div className='flex flex-col gap-8'>
+			<div className='flex justify-between px-4 md:px-12'>
 				<div className='flex flex-col gap-1'>
 					<div className='text-2xl font-bold'>
 						Today's Cryptocurrency Prices by Market Cap
@@ -41,7 +41,7 @@ const Highlights = ({ hourTrends, dayTrends, weekTrends, globals }: Props) => {
 						change over 24 hours.
 					</div>
 				</div>
-				<div className='flex items-center gap-2 text-slate-500'>
+				<div className='items-center gap-2 text-slate-500 hidden md:flex'>
 					Highlights
 					<button
 						className='w-12 h-6 bg-blue-400 text-white rounded-full relative'
@@ -57,7 +57,7 @@ const Highlights = ({ hourTrends, dayTrends, weekTrends, globals }: Props) => {
 			</div>
 
 			{showHighlights && (
-				<div className='px-12 flex gap-4 slide-in'>
+				<div className='flex-col lg:flex-row px-4 md:px-12 flex gap-4 slide-in'>
 					<HighlightTable
 						coins={hourTrends}
 						title={'Hourly Trends'}
