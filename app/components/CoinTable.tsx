@@ -26,6 +26,7 @@ const CoinTable = ({ coins }: { coins: coinTableType[] }) => {
 	const { data, error, isLoading, isFetching }: any = useQuery({
 		queryFn: () => getUserLikes(session?.user.id),
 		queryKey: ['userLikes'],
+		refetchOnWindowFocus: false,
 	})
 
 	const parsedCoins = useMemo(() => {

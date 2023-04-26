@@ -1,23 +1,7 @@
-import { getOrders } from '@/app/utils/fetchers'
-import { useQuery } from '@tanstack/react-query'
 import Image from 'next/image'
 import { moneyParse } from '@/app/utils/parsers'
 
 const OrderList = ({ orders }: any) => {
-	// const {
-	// 	data: orders,
-	// 	error,
-	// 	isLoading,
-	// 	isFetching,
-	// } = useQuery({
-	// 	queryFn: () => getOrders(),
-	// 	queryKey: [`orders`],
-	// })
-
-	{
-		console.log(orders, 'orders')
-	}
-
 	return (
 		<div className='basis-5/6 bg-white shadow-sm border border-gray-200 rounded-md py-4 flex flex-col gap-4'>
 			<div className='text-xl font-semibold px-4'>Orders</div>

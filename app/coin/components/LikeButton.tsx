@@ -34,6 +34,7 @@ function likeButton({
 	} = useQuery({
 		queryFn: () => getCoinLikes(coinId),
 		queryKey: [`coinLikes-${coinId}`],
+		refetchOnWindowFocus: false,
 	})
 
 	const { mutate: handleAddLike } = useMutation(addLike, {

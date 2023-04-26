@@ -17,6 +17,7 @@ const WatchListTable = ({
 	const { data, error, isLoading, isFetching }: any = useQuery({
 		queryFn: () => getUserLikes(session.user.id),
 		queryKey: ['userLikes'],
+		refetchOnWindowFocus: false,
 	})
 
 	const likeIds = data?.map((like: likeType) => like.coinId)

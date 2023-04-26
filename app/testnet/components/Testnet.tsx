@@ -4,7 +4,7 @@ import PurchaseForm from './PurchaseForm'
 import { useState } from 'react'
 import OrderList from './OrderList'
 import { useQuery } from '@tanstack/react-query'
-import { getUser, getUserProfile } from '@/app/utils/fetchers'
+import { getUserProfile } from '@/app/utils/fetchers'
 import Loader from '@/app/components/Loader'
 import { useSession } from 'next-auth/react'
 
@@ -24,6 +24,7 @@ const Testnet = ({ coins, session }: Props) => {
 	} = useQuery({
 		queryFn: () => getUserProfile(clientSession.user.id),
 		queryKey: [`user`],
+		refetchOnWindowFocus: false,
 	})
 
 	if (isLoading) return <Loader />
